@@ -6,14 +6,15 @@ const app = express();
 const  dotenv = require('dotenv').config();
 const PORT = process.env.PORT || 4000;
 const authRouter = require('./routes/authRouter');
+const home = require('./routes/home');
  dbConnect();
  app.set('view engine','ejs');
  app.use(bodyParser.json());
- app.use(bodyParser.urlencoded({extended:false}));
-
- app.get('/',(req,res)=>{
-   res.sendFile()
- })
+ app.use(bodyParser.urlencoded({extended:false})); 
+ app.use(express.static('pablic'));
+ 
+ app.use('/',home);
+   
  
  app.use('/api/user',authRouter);
  app.listen(PORT,()=>{
