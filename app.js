@@ -7,14 +7,15 @@ const  dotenv = require('dotenv').config();
 const PORT = process.env.PORT || 4000;
 const authRouter = require('./routes/authRouter');
 const home = require('./routes/home');
+const loginPage = require('./routes/loginPage')
  dbConnect();
  app.set('view engine','ejs');
  app.use(bodyParser.json());
- app.use(bodyParser.urlencoded({extended:false})); 
+ app.use(bodyParser.urlencoded({extended:false}));  
  app.use(express.static('public'));
- 
- app.use('/',home);
-   
+ app.use(express.static('assets'));
+ app.use(home)
+ app.use(loginPage);
  
  app.use('/api/user',authRouter);
  app.listen(PORT,()=>{

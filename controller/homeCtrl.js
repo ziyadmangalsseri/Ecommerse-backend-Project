@@ -1,7 +1,7 @@
-const express = require('express');
+// const express = require('express');
 
-home :{
-    (req,res)=>{
-        res.render("home");
-    }
-}
+// home :{
+//     (req,res)=>{
+//         res.render("home");
+//     }
+// }
