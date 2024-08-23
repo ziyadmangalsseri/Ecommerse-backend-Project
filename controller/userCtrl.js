@@ -1,9 +1,9 @@
 const User = require("../models/UserModels");
 
 const createUser = async (req,res)=>{
-    console.log('hello');
+    console.log('creatUser process');
     
-    const{ email}= req.body;
+    const{ email } = req.body;
     console.log(req.body);
     
     const findUser = await User.findOne({email:email})
@@ -18,4 +18,21 @@ const createUser = async (req,res)=>{
         })
     }  
 }
+
+const userlogin = async (req,res)=>{
+    console.log('userlogin process');
+    const {email,password} = req.body;
+    console.log(req.body);
+
+    const findUser = await User.findOne({email:email,password:password})
+    if(findUser){
+        req.session.email = findUser.email;
+        res.send(200).redirect()
+        
+    }
+    
+}
+
+
+
 module.exports = {createUser} 
