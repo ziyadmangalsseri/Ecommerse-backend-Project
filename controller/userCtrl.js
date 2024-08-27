@@ -20,19 +20,35 @@ const createUser = async (req,res)=>{
 }
 
 const userlogin = async (req,res)=>{
-    console.log('userlogin process');
+    console.log('userlogin process started');
     const {email,password} = req.body;
-    console.log(req.body);
+    console.log(req.body); 
+    try{
 
-    const findUser = await User.findOne({email:email,password:password})
-    if(findUser){
-        req.session.email = findUser.email;
-        res.send(200).redirect()
+        const findUser = await User.findOne({email:email,password:password})
+        if(findUser){
+          
+            req.session.email = findUser.email;
+            res.status(200).render('home');
         
+        }
+        else{
+            res.status(200).json({messege:"uesr invalid"});
+        }
+    }catch (error){ 
+        console.error(error.message);
+    res.status(500).json({ message: "Error logging in" });
+
     }
+
     
+}
+
+const forgotPassword = (req,res)=>{
+
+    res.status(200).render('forgot-password');
 }
 
 
 
-module.exports = {createUser} 
+module.exports = {createUser,userlogin,forgotPassword}; 

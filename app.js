@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const dbConnect = require('./config/dbConnect');
-const session = require('session');
+const session = require('express-session');
 
 
 const app = express();
@@ -12,6 +12,12 @@ const home = require('./routes/home');
 const loginPage = require('./routes/loginPage')
  dbConnect();
  app.set('view engine','ejs');
+ app.use(session({
+   secret : 'my secret key',
+   resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+ }))
  app.use(bodyParser.json());
  app.use(bodyParser.urlencoded({extended:false}));  
  app.use(express.static('public'));
