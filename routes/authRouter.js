@@ -7,7 +7,6 @@ const router = express.Router();
 
 router.post("/userlogin",userlogin);
 router.post("/signup",createUser);
-router.post("/forgot-password",forgotPassword);
- 
+router.post('/forgotPassword',forgotPassword);
 
 module.exports = router;
