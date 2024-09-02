@@ -58,14 +58,13 @@ const forgotPassword = async (req,res)=>{
     const findUser = await User.findOne({email:email});
      if(!findUser){
         return res.status(404).json({success:false,message:"user not found"});
-
      }
     //  Generate webToken
     const resetToken = jwt.sign({id:findUser?._id},process.env.JWT_SECRET,{expiresIn:'30m'});
     // construct the reset url
     const resetUrl = `http://yourfrontend.come/passwordreset/${resetToken}`;
     const message = `You requested password reset, please click the link below to reset your  password  :\n\n${resetUrl}`;
-    
+
     const otp = Math.floor(Math.random()*1000000);
     req.session.otp = otp;  
 
@@ -77,7 +76,7 @@ const forgotPassword = async (req,res)=>{
     });
 
     console.log(req.body);
-    res.status(200).json({success:true,message:"password reset message send your email"});
+    res.status(200).render('userSide/otpVerification');
 
   }catch(error){  
     console.error(error.message);

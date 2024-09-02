@@ -1,13 +1,19 @@
 
 const home =  (req,res)=>{
-        res.render("home");
-    }
-
+    res.render("userSide/home");
+}
 const forgotPasswordPage = (req,res)=>{
-    res.render('forgot-password-page');
+    res.render('userSide/forgot-password-page');
+}
+const login = (req,res)=>{
+    res.render('userSide/sign-in')
 }
 
 
 
-
-    module.exports = {home,forgotPasswordPage};
+    module.exports = {
+        home,
+        forgotPasswordPage,
+        login
+    
+    };  
