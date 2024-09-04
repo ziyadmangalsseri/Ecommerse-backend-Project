@@ -66,9 +66,10 @@ const forgotPassword = async (req,res)=>{
     const message = `You requested password reset, please click the link below to reset your  password  :\n\n${resetUrl}`;
 
     const otp = Math.floor(Math.random()*1000000);
+    
     req.session.otp = otp;  
 
-    // send email
+    // send email 
     await sendEmail({
         email,
         subject:"password reset request",
