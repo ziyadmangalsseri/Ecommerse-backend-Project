@@ -89,26 +89,6 @@ const sendOtp = async (req,res)=>{
 
 }  
 
-const verifyOtp = (req,res)=>{
-    try {
-        const {otp :resiveOtp} = req.body;
-        const {sendedOtp} = req.session;
-
-        if(!sendedOtp){
-            return res.status(400).json({success:false,message : 'OTO is not found or expired'});
-
-        }
-        else if(resiveOtp === sendedOtp.toString()){
-            res.status(200).json({success:true , message:"successfully verified"})
-        }
-        else{
-            res.status(200).json({success:false,message:"verification failed"});
-        }
-    }catch(error){
-        console.error(error);
-        
-    }
-}
 
 
 
@@ -117,5 +97,5 @@ module.exports = {
     createUser,
     userlogin,
     sendOtp,
-    verifyOtp,
+
 }; 
