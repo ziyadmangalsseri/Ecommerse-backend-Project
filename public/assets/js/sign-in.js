@@ -6,8 +6,7 @@ const form = document.getElementById("signin-form")
 	
 
 	if(email && password){
-		console.log('fetch started');
-		
+		// console.log('signin fetch started');
 		fetch('/api/user/userlogin',{
 			method : 'POST',
 			headers : {
@@ -23,7 +22,7 @@ const form = document.getElementById("signin-form")
 		})
 		.then(data => {
 			if(!data.success){
-				console.log(data);
+				// console.log(data);
 				document.getElementById('showerror').style.display = "block";
 				// Provide a more specific error message based on the data.error property
 				// document.getElementById('showerror').textContent = data.error;

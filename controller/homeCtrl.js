@@ -6,7 +6,10 @@ const forgotPasswordPage = (req,res)=>{
     res.render('userSide/forgot-password-page');
 }
 const login = (req,res)=>{
-    res.render('userSide/sign-in')
+    res.render('userSide/sign-in');
+}
+const otpverification = (req,res)=>{
+    res.render("userSide/otpVerification");
 }
 
 
@@ -14,6 +17,7 @@ const login = (req,res)=>{
     module.exports = {
         home,
         forgotPasswordPage,
-        login
+        login,
+        otpverification,
     
     };  
