@@ -20,8 +20,8 @@ const loginPage = require('./routes/loginPage')
  }))
  app.use(bodyParser.json());
  app.use(bodyParser.urlencoded({extended:false}));  
+ app.use(express.static('public/assets'));
  app.use(express.static('public'));
- app.use(express.static('assets'));
  app.use(home)
  app.use(loginPage);
  

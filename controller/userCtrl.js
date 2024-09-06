@@ -30,9 +30,11 @@ const userlogin = async (req,res)=>{
 
         const findUser = await User.findOne({email:email,password:password})
         if(findUser){
+          console.log(findUser);
           
             req.session.email = findUser.email;
-            res.status(200).redirect('/home');
+            res.status(200).json({success:true,message:"successfully"});
+        console.log(req.session.email);
         
         }
         else{
@@ -49,7 +51,7 @@ const userlogin = async (req,res)=>{
 
         // forgot password
 
-const forgotPassword = async (req,res)=>{
+const sendOtp = async (req,res)=>{
 
   try {  
     const {email} = req.body;
@@ -87,11 +89,33 @@ const forgotPassword = async (req,res)=>{
 
 }  
 
-// njkbjkblb
-// nknjklbljkb
-// jhgiglig
+const verifyOtp = (req,res)=>{
+    try {
+        const {otp :resiveOtp} = req.body;
+        const {sendedOtp} = req.session;
+
+        if(!sendedOtp){
+            return res.status(400).json({success:false,message : 'OTO is not found or expired'});
+
+        }
+        else if(resiveOtp === sendedOtp.toString()){
+            res.status(200).json({success:true , message:"successfully verified"})
+        }
+        else{
+            res.status(200).json({success:false,message:"verification failed"});
+        }
+    }catch(error){
+        console.error(error);
+        
+    }
+}
 
 
 
 
-module.exports = {createUser,userlogin,forgotPassword}; 
+module.exports = {
+    createUser,
+    userlogin,
+    sendOtp,
+    verifyOtp,
+}; 
