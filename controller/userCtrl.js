@@ -89,6 +89,26 @@ const sendOtp = async (req,res)=>{
 
 }  
 
+const otpVerification = async (req,res) => {
+    
+    try{
+        const {otp : userOtp} = req.body;
+        const {otp} = req.session
+
+        if(!otp){
+            return res.status(400).json({success : false , message : 'OTP is not found or Expired'});
+
+        }else if (userOtp === otp.toString()){
+            res.status(200).json({success : true , message : "successfully verified"});
+        }else{
+            res.status(200).json({success : false , message : "verification failed"});
+        }
+    }catch(err){
+        console.error(err);
+        
+    }
+}
+
 
 
 
@@ -97,5 +117,6 @@ module.exports = {
     createUser,
     userlogin,
     sendOtp,
+    otpVerification,
 
 }; 
