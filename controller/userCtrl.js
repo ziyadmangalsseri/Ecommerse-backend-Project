@@ -93,12 +93,16 @@ const otpVerification = async (req,res) => {
     
     try{
         const {otp : userOtp} = req.body;
-        const {otp} = req.session
+        const {otp} = req.session;
+
+        console.log("sended otp : ",otp);
+        console.log("user enterd otp : ",userOtp);
+        
 
         if(!otp){
             return res.status(400).json({success : false , message : 'OTP is not found or Expired'});
 
-        }else if (userOtp === otp.toString()){
+        }if (userOtp === otp.toString()){
             res.status(200).json({success : true , message : "successfully verified"});
         }else{
             res.status(200).json({success : false , message : "verification failed"});

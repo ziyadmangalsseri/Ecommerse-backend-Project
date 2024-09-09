@@ -18,17 +18,24 @@
       <h4>Enter OTP Code</h4>
       <form id="otp-form">
         <div class="input-field">
-          <input type="number" />
+          <!-- <input type="number" />
           <input type="number" disabled />
           <input type="number" disabled />
           <input type="number" disabled />
           <input type="number" disabled />
-          <input type="number" disabled />
+          <input type="number" disabled /> -->
+
+          <input type="text" class="input-field" maxlength="1" />
+          <input type="text" class="input-field" maxlength="1" />
+          <input type="text" class="input-field" maxlength="1" />
+          <input type="text" class="input-field" maxlength="1" />
+          <input type="text" class="input-field" maxlength="1" />
+          <input type="text" class="input-field" maxlength="1" />
         </div>
         <br>
         <p id="resend-email-message" style="display: none; color: red;">Invalid otp please resend email</p>
         <button id="verify-button" class="verify-button">Verify OTP</button>
-        <button style="display: none;" id="resendOtp" class="resend-button">Resend OTP</button>
+        <button type="submit" style="display: none;" id="resendOtp" class="resend-button" > <a href="/forgot-password-page"></a>Resend OTP</button>
       </form>
     </div>
     <script src="./js/otpVerification.js" ></script>
