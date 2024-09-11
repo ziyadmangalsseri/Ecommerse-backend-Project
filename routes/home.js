@@ -6,15 +6,13 @@ const {
     forgotPasswordPage,
     login,
     otpverification,
-    resetPassword,
 } = require('../controller/homeCtrl');
 
 
 router.get('/home',home);  
 router.get("/forgot-password-page",forgotPasswordPage);
 router.get('/login',login)
-router.get('/otpverification',otpverification);
-router.get('/reset-password',resetPassword)
+router.get('/otpverification',otpverification)
 
   
 module.exports = router;              

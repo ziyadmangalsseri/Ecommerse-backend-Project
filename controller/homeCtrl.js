@@ -11,9 +11,6 @@ const login = (req,res)=>{
 const otpverification = (req,res)=>{
     res.render("userSide/otpVerification");
 }
-const resetPassword = (req,res) => {
-    res.render('userSide/reset-password');
-}
 
 
 
@@ -22,6 +19,5 @@ const resetPassword = (req,res) => {
         forgotPasswordPage,
         login,
         otpverification,
-        resetPassword,
     
     };  
