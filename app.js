@@ -16,7 +16,7 @@ const loginPage = require('./routes/loginPage')
    secret : 'my secret key',
    resave: false,
   saveUninitialized: true,
-  cookie: { secure: true }
+  cookie: { secure: false }
  }))
  app.use(bodyParser.json());
  app.use(bodyParser.urlencoded({extended:false}));  

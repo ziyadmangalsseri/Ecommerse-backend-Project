@@ -4,7 +4,6 @@ const asyncHandler = require("async-handler");
 const sendEmail = require("../utilities/sendemail");
 const { json } = require("body-parser");
 const bcrypt = require("bcrypt");
-const UserModels = require("../models/UserModels");
 
 const createUser = async (req, res) => {
   try {
@@ -106,7 +105,6 @@ const otpVerification = async (req, res) => {
     const { otp: userOtp } = req.body;
     const { otp } = req.session;
 
-<<<<<<< HEAD
     console.log("sended otp : ", otp);
     console.log("user enterd otp : ", userOtp);
 
@@ -114,25 +112,6 @@ const otpVerification = async (req, res) => {
       return res
         .status(400)
         .json({ success: false, message: "OTP is not found or Expired" });
-=======
-const otpVerification = async (req,res) => {
-    
-    try{
-        const {otp : userOtp} = req.body;
-        const {otp} = req.session
-
-        if(!otp){
-            return res.status(400).json({success : false , message : 'OTP is not found or Expired'});
-
-        }else if (userOtp === otp.toString()){
-            res.status(200).json({success : true , message : "successfully verified"});
-        }else{
-            res.status(200).json({success : false , message : "verification failed"});
-        }
-    }catch(err){
-        console.error(err);
-        
->>>>>>> parent of ee42465 (otp verification successfully)
     }
     if (userOtp === otp.toString()) {
       res.status(200).json({ success: true, message: "successfully verified" });
@@ -144,56 +123,44 @@ const otpVerification = async (req,res) => {
   }
 };
 
-const resetPassword = async (req, res) => {
+const resetPassword=async (req,res)=>{
   try {
-    const { newPassword, confirPassword } = req.body;
+    
+    const {newPassword, confirmPassword}=req.body;
+
+    console.log( 'password is ::',newPassword, confirmPassword);
+
     const email = req.session.email;
-    console.log(
-      "new password is :",
-      newPassword,
-      "confirm password is : ",
-      confirPassword
-    );
 
-    const validateError = validatePassword(password);
-
-    if (validateError) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message: "no email found in session",
-          error: validateError,
-        });
+    if(!email){
+      return res.status(400).json({success:false,message:"No email found in session"});
     }
-    if (newPassword !== confirPassword) {
-      return res
-        .status(400)
-        .json({ success: false, message: "password do not match" });
+
+    if( newPassword  !== confirmPassword){
+      return res.status(400).json({success:false ,message:'password do not match'});
     }
-    //  const user = await User.findOne({email:email});
-    //  if(!user){
-    // return res.status(404).json({success:false,message:"user not found"});
-    //   }else{
-    // const hashPassword = await bcrypt.hash(newPassword,10);
-    //     user.password = hashPassword;
-    //     await user.save();
-    //     res.status(200).redirect('/home');
+    const user=await User.findOne({email:email});
+    console.log(email);
+    
 
-    // }
+    if(!user){
+      return res.status(404).json({success:false, message:"user not found"});
+    }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    await users.findByIdAndUpdate(req.session.user._id, {
-      password: hashedPassword,
-    });
-    res
-      .status(200)
-      .json({ success: true, message: "Password changed successfully" });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ success: false, message: "internal server error" });
+    const hashPassword=await bcrypt.hash(newPassword,10);
+
+    user.password=hashPassword;
+    await user.save();
+
+    res.status(200).json({success:true, message:"your password reset is successfully"});
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ success: false, message: "Internal server error" });
   }
-};
+
+}
+
+
 
 module.exports = {
   createUser,
