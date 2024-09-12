@@ -1,30 +1,28 @@
 const User = require("../models/UserModels");
 const jwt = require("jsonwebtoken");
-const asyncHandler = require("async-handler");
+// const asyncHandler = require("async-handler");
 const sendEmail = require("../utilities/sendemail");
-const { json } = require("body-parser");
+// const { json } = require("body-parser");
 const bcrypt = require("bcrypt");
 
 const createUser = async (req, res) => {
   try {
     console.log("creatUser process");
 
-    // const { email, name, number, password } = req.body;
-    const {email} = req.body; 
+    const { email, name, mobile, password } = req.body;
     console.log(req.body);
 
     const findUser = await User.findOne({ email: email });
     if (!findUser) {
       // create new user
-
-      //   const hashpassword = await bcrypt.hash(password,10);
-    //   const newUser = await User.create({
-    //     email: email,
-    //     name: name,
-    //     number: number,
-    //     password: password,
-    //   });
-        const newUser = await User.create(req.body);
+        const hashpassword = await bcrypt.hash(password,10);
+      const newUser = await User.create({
+        email: email,
+        name: name,
+        number: mobile,
+        password: hashpassword,
+      });
+        // const newUser = await User.create(req.body);
       res.status(200).redirect("/home");
     } else {
       res.json({
@@ -130,10 +128,15 @@ const resetPassword=async (req,res)=>{
 
     console.log( 'password is ::',newPassword, confirmPassword);
 
-    const email = req.session.email;
+    // const email = req.session.email;
+    const {email} = req.session;
 
     if(!email){
       return res.status(400).json({success:false,message:"No email found in session"});
+    }
+
+    if(!newPassword || !confirmPassword){
+      return res.status(400).json({success:false,message:"password cannot be empty"})
     }
 
     if( newPassword  !== confirmPassword){
@@ -148,8 +151,9 @@ const resetPassword=async (req,res)=>{
     }
 
     const hashPassword=await bcrypt.hash(newPassword,10);
-
     user.password=hashPassword;
+
+    console.log('password hashed');
     await user.save();
 
     res.status(200).json({success:true, message:"your password reset is successfully"});
@@ -159,7 +163,7 @@ const resetPassword=async (req,res)=>{
   }
 
 }
-
+ 
 
 
 module.exports = {
