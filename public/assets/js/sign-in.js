@@ -1,3 +1,13 @@
+
+function togglePassword(id) {
+	const passwordField = document.getElementById(id);
+	const type = passwordField.type === 'password' ? 'text' : 'password';
+	passwordField.type = type;
+}
+
+
+
+
 const form = document.getElementById("signin-form")
 	  form.addEventListener('submit', (event)=>{
 		event.preventDefault();
@@ -12,7 +22,7 @@ const form = document.getElementById("signin-form")
 			headers : {
 				'Content-Type' : 'application/json'
 			},
-			body : JSON.stringify({email ,password}),
+			body : JSON.stringify({email:email ,password:password}),
 		})
 		.then(response => {
 			if(!response.ok){

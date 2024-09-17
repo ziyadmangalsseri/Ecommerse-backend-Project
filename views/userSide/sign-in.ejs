@@ -1,6 +1,20 @@
 
 
 <%- include("../layout/header.ejs") %>
+<style>
+	.password-toggle {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    font-size: 14px;
+    transform: translateY(-50%);
+}
+.input-group2 {
+    position: relative;
+}
+
+</style>
 <main>
 
 <div class="breadcrumb">
@@ -33,9 +47,13 @@
 		</div>
 	  	<div class="form-group">
 		    <label class="info-title" for="exampleInputPassword1">Password <span>*</span></label>
-		    <input type="password" class="form-control unicase-form-control text-input" id="signin-password" name="password" >
+			<div class="input-group2">
+				<input type="password" class="form-control unicase-form-control text-input" id="signin-password" name="password" >
+				<span class="password-toggle" onclick="togglePassword('signin-password')">👁️</span>
+			</div>
+
 		</div>
-		<p id="showerror" style="display: none; color: red ; text-align: center;"> Invalid Email try again </p>
+		<p id="showerror" style="display: none; color: red ; text-align: center;"> Invalid Email or Password try again </p>
 		<div class="radio outer-xs">
 		  	<label>
 		    	<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Remember me!
@@ -62,15 +80,22 @@
 		</div>
         <div class="form-group">
 		    <label class="info-title" for="exampleInputEmail1">Phone Number <span>*</span></label>
-		    <input type="number" class="form-control unicase-form-control text-input" name="mobile" id="exampleInputEmail1" required>
+		    <input type="number" class="form-control unicase-form-control text-input" name="number" id="exampleInputEmail1" required>
 		</div>
         <div class="form-group">
-		    <label class="info-title" for="exampleInputEmail1">Password <span>*</span></label>
-		    <input type="password" class="form-control unicase-form-control text-input" name="password" id="exampleInputEmail1" required>
+			<label class="info-title" for="exampleInputEmail1">Password <span>*</span></label>
+			<div class="input-group2">
+				<input type="password" class="form-control unicase-form-control text-input" name="password" id="exampleInputEmail1-password"  required>
+				<span class="password-toggle" onclick="togglePassword('exampleInputEmail1-password')">👁️</span>
+			</div>
 		</div>
          <div class="form-group">
-		    <label class="info-title" for="exampleInputEmail1">Confirm Password <span>*</span></label>
-		    <input type="password" class="form-control unicase-form-control text-input" name="confirm_password" id="exampleInputEmail1" >
+			 <label class="info-title" for="exampleInputEmail1">Confirm Password <span>*</span></label>
+			 <div class="input-group2">
+				<input type="password" class="form-control unicase-form-control text-input" name="confirm_password" id="exampleInputEmail1-confirm-password" >
+				<span class="password-toggle" onclick="togglePassword('exampleInputEmail1-confirm-password')">👁️</span>
+
+			</div>
 		</div>
 	  	<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Sign Up</button>
 	</form>
