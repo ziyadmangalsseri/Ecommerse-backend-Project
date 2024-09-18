@@ -1,7 +1,7 @@
-const User = require("../models/UserModels");
+const User = require("../../models/UserModels");
 const jwt = require("jsonwebtoken");
 const asyncHandler = require("async-handler");
-const sendEmail = require("../utilities/sendemail");
+const sendEmail = require("../../utilities/sendemail");
 const { json } = require("body-parser");
 const bcrypt = require("bcrypt");
 
@@ -25,8 +25,12 @@ const createUser = async (req, res) => {
         name: name,
         mobile: number,
         password: hashpassword,
+        isAdmin:false
       });
-      // const newUser = await User.create(req.body);
+      
+      if(newUser.isAdmin){
+        res.status(200).redirect("/adminPage");
+      }
       res.status(200).redirect("/home");
     } else {
       res.json({
@@ -54,11 +58,16 @@ const userlogin = async (req, res) => {
       return res
         .status(401)
         .json({ success: false, message: "invalid password" });
-    } else {
+    }
+    
+    if(findUser.isAdmin){
+      res.status(200).json({success:true,message:"admin login successfully",redirectUrl:"/adminPage"});
+    }
+    else {
       console.log(findUser);
 
       req.session.email = findUser.email;
-      res.status(200).json({ success: true, message: "successfully" });
+      res.status(200).json({ success: true, message: "successfully",redirectUrl:"/home" });
       console.log(req.session.email);
       // res.status(200).json({ messege: "uesr invalid" });
     }

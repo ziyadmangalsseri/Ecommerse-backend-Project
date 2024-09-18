@@ -1,65 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>eCommerce Admin Dashboard</title>
-  <link rel="stylesheet" href="/assets/css/admin.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Admin Dashboard</title>
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <div class="logo">
-      <img src="assets/images/logo.png" alt="Admin Profile" class="profile-img">
-      <br><br>
-      <h2>Admin Panel</h2>
-    </div>
-    <ul>
-      <li><a href="#">Dashboard</a></li>
-      <li><a href="#">Orders</a></li>
-      <li><a href="#">Products</a></li>
-      <li><a href="#">Categories</a></li>
-      <li><a href="#">Customers</a></li>
-      <li><a href="#">Settings</a></li>
-      <li><a href="#">Logout</a></li>
-    </ul>
-  </div>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+              <img src="../images/logo.png" alt="logo">
+                <!-- <h4>Admin Dashboard</h4> -->
+            </div>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#dashboard" id="dashboard-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                </li>
+                <li>
+                    <a href="#products" id="products-link"><i class="fas fa-box"></i> Products</a>
+                </li>
+                <li>
+                    <a href="#orders" id="orders-link"><i class="fas fa-shopping-cart"></i> Orders</a>
+                </li>
+                <li>
+                    <a href="#customers" id="customers-link"><i class="fas fa-users"></i> Customers</a>
+                </li>
+                <li>
+                    <a href="#categories" id="categories-link"><i class="fas fa-list-alt"></i> Categories</a>
+                </li>
+                <li>
+                    <a href="#reports" id="reports-link"><i class="fas fa-chart-line"></i> Reports</a>
+                </li>
+                <li>
+                    <a href="#settings" id="settings-link"><i class="fas fa-cog"></i> Settings</a>
+                </li>
+            </ul>
+        </nav>
 
-  <!-- Main Content -->
-  <div class="main-content">
-    <!-- Top Navigation -->
-    <div class="top-nav">
-      <div class="welcome">
-        <h2>Welcome, Admin</h2>
-      </div>
-      <div class="profile">
-        <img src="assets/images/logo.png" alt="Admin Profile" class="profile-img">
-        <!-- <span>Admin</span> -->
-      </div>
+        <!-- Page Content -->
+        <div id="content">
+            <header>
+                <h2>Welcome Admin</h2>
+                <div class="user-profile">
+                    <img src="https://via.placeholder.com/40" alt="User Avatar">
+                    <span>Admin</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </header><br>
+
+            <!-- Dashboard Overview Section -->
+            <section id="dashboard" class="content-section active">
+                <h3>Dashboard Overview</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-dollar-sign"></i>
+                        <h4>Total Sales</h4>
+                        <p>$12,450</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h4>Total Orders</h4>
+                        <p>150</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <h4>Total Customers</h4>
+                        <p>300</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Revenue</h4>
+                        <p>$5,200</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Products Section -->
+            <section id="products" class="content-section">
+                <h3>Product Management</h3>
+                <button class="btn-primary" id="add-product-btn">Add Product</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product-list">
+                        <!-- Dynamic Product List will be appended here -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Orders Section -->
+            <section id="orders" class="content-section">
+                <h3>Order Management</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="order-list">
+                        <!-- Dynamic Order List will be appended here -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Customers Section -->
+            <section id="customers" class="content-section">
+                <h3>Customer Management</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Customer Name</th>
+                            <th>Email</th>
+                            <th>Orders</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customer-list">
+                        <!-- Dynamic Customer List will be appended here -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Categories Section -->
+            <section id="categories" class="content-section">
+                <h3>Category Management</h3>
+                <button class="btn-primary" id="add-category-btn">Add Category</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="category-list">
+                        <!-- Dynamic Category List will be appended here -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Reports Section -->
+            <section id="reports" class="content-section">
+                <h3>Sales and Performance Reports</h3>
+                <p>Coming soon...</p>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="content-section">
+                <h3>Settings</h3>
+                <p>Coming soon...</p>
+            </section>
+        </div>
     </div>
 
-    <!-- Dashboard Content -->
-    <div class="dashboard">
-      <h3>Dashboard Overview</h3>
-      <div class="cards">
-        <div class="card">
-          <h4>Total Sales</h4>
-          <p>$25,000</p>
-        </div>
-        <div class="card">
-          <h4>Orders</h4>
-          <p>120</p>
-        </div>
-        <div class="card">
-          <h4>Products</h4>
-          <p>350</p>
-        </div>
-        <div class="card">
-          <h4>Customers</h4>
-          <p>220</p>
-        </div>
-      </div>
-    </div>
-  </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+    // Sidebar navigation handling
+    const sidebarLinks = document.querySelectorAll("#sidebar ul li a");
+    const sections = document.querySelectorAll(".content-section");
+
+    sidebarLinks.forEach(link => {
+        link.addEventListener("click", function () {
+            // Remove active class from all links and sections
+            sidebarLinks.forEach(link => link.parentNode.classList.remove("active"));
+            sections.forEach(section => section.classList.remove("active"));
+
+            // Add active class to clicked link and corresponding section
+            this.parentNode.classList.add("active");
+            const targetSection = document.querySelector(this.getAttribute("href"));
+            targetSection.classList.add("active");
+        });
+    });
+
+    // Dummy product list
+    const productList = document.getElementById("product-list");
+    const products = [
+        { name: 'Product 1', price: '$100', stock: '25' },
+        { name: 'Product 2', price: '$150', stock: '10' }
+    ];
+
+    products.forEach(product => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${product.name}</td>
+            <td>${product.price}</td>
+            <td>${product.stock}</td>
+            <td><button class="btn-primary">Edit</button></td>
+        `;
+        productList.appendChild(row);
+    });
+
+    // Dummy order list
+    const orderList = document.getElementById("order-list");
+    const orders = [
+        { id: 'ORD001', customer: 'John Doe', total: '$200', status: 'Processing' },
+        { id: 'ORD002', customer: 'Jane Smith', total: '$150', status: 'Shipped' }
+    ];
+
+    orders.forEach(order => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${order.id}</td>
+            <td>${order.customer}</td>
+            <td>${order.total}</td>
+            <td>${order.status}</td>
+            <td><button class="btn-primary">View</button></td>
+        `;
+        orderList.appendChild(row);
+    });
+
+    // Dummy customer list
+    const customerList = document.getElementById("customer-list");
+    const customers = [
+        { name: 'John Doe', email: 'john@example.com', orders: '5' },
+        { name: 'Jane Smith', email: 'jane@example.com', orders: '3' }
+    ];
+
+    customers.forEach(customer => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${customer.name}</td>
+            <td>${customer.email}</td>
+            <td>${customer.orders}</td>
+            <td><button class="btn-primary">View</button></td>
+        `;
+        customerList.appendChild(row);
+    });
+});
+
+    </script>
 </body>
 </html>

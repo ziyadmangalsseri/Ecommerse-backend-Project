@@ -1,9 +1,9 @@
 const express = require('express');
-const {createUser} = require("../controller/userCtrl");
-const {userlogin} = require('../controller/userCtrl');
-const {forgotPassword} = require('../controller/userCtrl');
-const {otpVerification} = require('../controller/userCtrl');
-const {resetPassword} = require("../controller/userCtrl");
+const {createUser} = require("../controller/user/userCtrl");
+const {userlogin} = require('../controller/user/userCtrl');
+const {forgotPassword} = require('../controller/user/userCtrl');
+const {otpVerification} = require('../controller/user/userCtrl');
+const {resetPassword} = require("../controller/user/userCtrl");
 const router = express.Router();
 
 

@@ -38,7 +38,7 @@ const form = document.getElementById("signin-form")
 				// document.getElementById('showerror').textContent = data.error;
 			}
 			else{
-				window.location.href = "/home";
+				window.location.href = data.redirectUrl;
 			}
 		})
 		.catch(err=>{

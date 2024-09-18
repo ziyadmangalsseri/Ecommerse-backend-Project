@@ -23,6 +23,10 @@ var userSchema = new mongoose.Schema({
     confirm_Password:{
         type:String,
         require : true,
+    },
+    isAdmin:{
+        type:Boolean,
+        default:false,
     }
 });
 
