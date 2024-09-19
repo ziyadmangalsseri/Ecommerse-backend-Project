@@ -27,6 +27,6 @@ const loginPage = require('./routes/loginPage')
  
  app.use('/api/user',authRouter);
  app.listen(PORT,()=>{
-    console.log(`server is running ${PORT} running........`);
+    console.log(`server is running http://localhost:${PORT}/home running........`);
     
  })    

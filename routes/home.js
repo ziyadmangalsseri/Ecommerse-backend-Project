@@ -20,6 +20,7 @@ const {
     trakOrders,
     faq,
     error,
+    myAccount,
 } = require('../controller/homeCtrl');
 
 
@@ -36,6 +37,7 @@ router.get('/terms-conditions',termsConditions);
 router.get('/track-orders',trakOrders);
 router.get('/faq',faq);
 router.get('/404',error);
+router.get('/my-account',myAccount)
 
 
 

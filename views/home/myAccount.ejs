@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - E-Commerce</title>
+    <link rel="stylesheet" href="assets/css/myAccount.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar Navigation -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>My Account</h3>
+            </div>
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#dashboard" data-toggle="content-section"><i class="fas fa-home"></i> Dashboard</a>
+                </li>
+                <li>
+                    <a href="#orders" data-toggle="content-section"><i class="fas fa-box"></i> Your Orders</a>
+                </li>
+                <li>
+                    <a href="#addresses" data-toggle="content-section"><i class="fas fa-map-marker-alt"></i> Your Addresses</a>
+                </li>
+                <li>
+                    <a href="#payment-methods" data-toggle="content-section"><i class="fas fa-credit-card"></i> Payment Options</a>
+                </li>
+                <li>
+                    <a href="#account-settings" data-toggle="content-section"><i class="fas fa-cog"></i> Account Settings</a>
+                </li>
+                <li>
+                    <a href="#logout" data-toggle="content-section"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <header>
+                <h2>My Account</h2>
+                <div class="user-profile">
+                    <img src="https://via.placeholder.com/40" alt="User Avatar">
+                    <span>John Doe</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <h3>Account Overview</h3>
+                <div class="dashboard-cards">
+                    <div class="card">
+                        <i class="fas fa-box"></i>
+                        <h4>Your Orders</h4>
+                        <p>Track, return, or buy things again</p>
+                        <a href="#orders" class="btn-primary">View Orders</a>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h4>Your Addresses</h4>
+                        <p>Edit or delete your addresses</p>
+                        <a href="#addresses" class="btn-primary">Manage Addresses</a>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-credit-card"></i>
+                        <h4>Payment Options</h4>
+                        <p>Manage your payment methods</p>
+                        <a href="#payment-methods" class="btn-primary">Update Payments</a>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-cog"></i>
+                        <h4>Account Settings</h4>
+                        <p>Change your password and settings</p>
+                        <a href="#account-settings" class="btn-primary">Update Settings</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Orders Section -->
+            <section id="orders" class="content-section">
+                <h3>Your Orders</h3>
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Date</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="order-list">
+                        <!-- Dynamic Orders will appear here -->
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Addresses Section -->
+            <section id="addresses" class="content-section">
+                <h3>Your Addresses</h3>
+                <button class="btn-primary" id="add-address-btn">Add New Address</button>
+                <div id="address-list">
+                    <!-- Dynamic Address List will appear here -->
+                </div>
+            </section>
+
+            <!-- Payment Options Section -->
+            <section id="payment-methods" class="content-section">
+                <h3>Payment Options</h3>
+                <button class="btn-primary" id="add-payment-btn">Add Payment Method</button>
+                <div id="payment-list">
+                    <!-- Dynamic Payment List will appear here -->
+                </div>
+            </section>
+
+            <!-- Account Settings Section -->
+            <section id="account-settings" class="content-section">
+                <h3>Account Settings</h3>
+                <form id="settings-form">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" value="john@example.com">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" value="password123">
+                    <button type="submit" class="btn-primary">Update Settings</button>
+                </form>
+            </section>
+
+            <!-- Logout Section -->
+            <section id="logout" class="content-section">
+                <h3>Log Out</h3>
+                <p>Are you sure you want to log out?</p>
+                <button class="btn-primary" id="logout-btn">Log Out</button>
+            </section>
+        </div>
+    </div>
+
+    <script src="./js/myAccount.js"></script>
+</body>
+</html>
