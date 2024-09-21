@@ -9,7 +9,7 @@ const  dotenv = require('dotenv').config();
 const PORT = process.env.PORT || 4000;
 const authRouter = require('./routes/authRouter');
 const home = require('./routes/home');
-const loginPage = require('./routes/loginPage')
+
  dbConnect();
  app.set('view engine','ejs');
  app.use(session({
@@ -22,9 +22,8 @@ const loginPage = require('./routes/loginPage')
  app.use(bodyParser.urlencoded({extended:false}));  
  app.use(express.static('public/assets'));
  app.use(express.static('public'));
- app.use(home)
- app.use(loginPage);
  
+ app.use(home)
  app.use('/api/user',authRouter);
  app.listen(PORT,()=>{
     console.log(`server is running http://localhost:${PORT}/home running........`);
