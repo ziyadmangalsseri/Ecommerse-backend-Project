@@ -9,7 +9,6 @@ const {
   login,
   otpverification,
   resetPassword,
-  adminPage,
   category,
   detail,
   shoppingCart,
@@ -41,8 +40,6 @@ router.get("/faq", faq);
 router.get("/404", error);
 router.get("/my-account", myAccount);
 
-// Admin Routes
-router.get("/adminPage", adminPage);
 
 // Authentication Routes
 router.get("/forgot-password-page", forgotPasswordPage);

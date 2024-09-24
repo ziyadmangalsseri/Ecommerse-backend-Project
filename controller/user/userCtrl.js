@@ -32,8 +32,9 @@ const createUser = async (req, res) => {
 
       if (newUser.isAdmin) {
         res.status(200).redirect("/adminPage");
+      }if(newUser){
+        res.status(200).redirect("/home");
       }
-      res.status(200).redirect("/home");
     } else {
       res.json({
         msg: "User Already Exists",
@@ -66,7 +67,7 @@ const userlogin = async (req, res) => {
       res.status(200).json({
         success: true,
         message: "admin login successfully",
-        redirectUrl: "/adminPage",
+        redirectUrl: "/api/admin/dashboard",
       });
     } else {
       console.log(findUser);
@@ -129,7 +130,7 @@ const forgotPassword = async (req, res) => {
       "December",
     ];
     const monthName = months[now.getMonth()]; // Get the month name
-
+    const imagePath = "/public/assets/images/logo.png";
     const emailTemplate = `<!DOCTYPE html>
     <html lang="en">
       <head>
@@ -172,10 +173,10 @@ const forgotPassword = async (req, res) => {
                   <td>
                     <img
                       alt=""
-                      src="http://localhost:8002/public/assets/images/logo.png"
+                      src=${imagePath};
                       height="30px"
                     />
-                  </td>
+                  </td> 
                   <td style="text-align: right;">
                     <span
                       style="font-size: 16px; line-height: 30px; color: #ffffff;"

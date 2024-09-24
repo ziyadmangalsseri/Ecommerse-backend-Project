@@ -73,4 +73,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+
+//CATEGORY
+
+document.addEventListener("DOMContentLoaded",()=>{
+    const form = document.querySelector("category-form")
+    form.addEventListener("submit",(event)=>{
+        event.preventDefault();
+        fetch("/api/admin")
+    })
+})
     

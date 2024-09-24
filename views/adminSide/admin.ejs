@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Commerce Admin Dashboard</title>
-    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="/css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
         <!-- Sidebar -->
         <nav id="sidebar">
             <div class="sidebar-header">
-              <img src="../images/logo.png" alt="logo">
+              <img src="/images/logo.png" alt="logo">
                 <!-- <h4>Admin Dashboard</h4> -->
             </div>
             <ul class="list-unstyled components">
@@ -136,8 +136,10 @@
 
             <!-- Categories Section -->
             <section id="categories" class="content-section">
-                <h3>Category Management</h3>
-                <button class="btn-primary" id="add-category-btn">Add Category</button>
+                <h3>Category Management</h3><br>
+                <form class="category-form">
+                    <button class="btn-primary" id="add-category-btn">Add Category</button>
+                </form>
                 <table>
                     <thead>
                         <tr>
