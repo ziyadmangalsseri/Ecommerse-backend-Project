@@ -1,0 +1,24 @@
+<%- include("sidebar.ejs") %>
+<!-- Page Content -->
+<%- include("header.ejs")%>
+
+ <!-- Products Section -->
+ <section id="products" class="content-section">
+    <h3>Product Management</h3>
+    <button class="btn-primary" id="add-product-btn">Add Product</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+                 <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="product-list">
+            <!-- Dynamic Product List will be appended here -->
+        </tbody>
+    </table>
+</section>
+
+<%- include("footer.ejs")%>

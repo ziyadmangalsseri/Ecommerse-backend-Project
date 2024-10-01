@@ -1,56 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce Admin Dashboard</title>
-    <link rel="stylesheet" href="/css/admin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-</head>
-<body>
-    <div class="wrapper">
-        <!-- Sidebar -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
-              <img src="/images/logo.png" alt="logo">
-                <!-- <h4>Admin Dashboard</h4> -->
-            </div>
-            <ul class="list-unstyled components">
-                <li class="active">
-                    <a href="#dashboard" id="dashboard-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-                </li>
-                <li>
-                    <a href="#products" id="products-link"><i class="fas fa-box"></i> Products</a>
-                </li>
-                <li>
-                    <a href="#orders" id="orders-link"><i class="fas fa-shopping-cart"></i> Orders</a>
-                </li>
-                <li>
-                    <a href="#customers" id="customers-link"><i class="fas fa-users"></i> Customers</a>
-                </li>
-                <li>
-                    <a href="#categories" id="categories-link"><i class="fas fa-list-alt"></i> Categories</a>
-                </li>
-                <li>
-                    <a href="#reports" id="reports-link"><i class="fas fa-chart-line"></i> Reports</a>
-                </li>
-                <li>
-                    <a href="#settings" id="settings-link"><i class="fas fa-cog"></i> Settings</a>
-                </li>
-            </ul>
-        </nav>
-
+    <%- include("sidebar.ejs") %>
         <!-- Page Content -->
-        <div id="content">
-            <header>
-                <h2>Welcome Admin</h2>
-                <div class="user-profile">
-                    <img src="https://via.placeholder.com/40" alt="User Avatar">
-                    <span>Admin</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-            </header><br>
-
+       <%- include("header.ejs")%>
             <!-- Dashboard Overview Section -->
             <section id="dashboard" class="content-section active">
                 <h3>Dashboard Overview</h3>
@@ -78,80 +28,13 @@
                 </div>
             </section>
 
-            <!-- Products Section -->
-            <section id="products" class="content-section">
-                <h3>Product Management</h3>
-                <button class="btn-primary" id="add-product-btn">Add Product</button>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Product Name</th>
-                            <th>Price</th>
-                            <th>Stock</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="product-list">
-                        <!-- Dynamic Product List will be appended here -->
-                    </tbody>
-                </table>
-            </section>
+           
 
-            <!-- Orders Section -->
-            <section id="orders" class="content-section">
-                <h3>Order Management</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Order ID</th>
-                            <th>Customer</th>
-                            <th>Total</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="order-list">
-                        <!-- Dynamic Order List will be appended here -->
-                    </tbody>
-                </table>
-            </section>
+            
 
-            <!-- Customers Section -->
-            <section id="customers" class="content-section">
-                <h3>Customer Management</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Customer Name</th>
-                            <th>Email</th>
-                            <th>Orders</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="customer-list">
-                        <!-- Dynamic Customer List will be appended here -->
-                    </tbody>
-                </table>
-            </section>
+            
 
-            <!-- Categories Section -->
-            <section id="categories" class="content-section">
-                <h3>Category Management</h3><br>
-                <form class="category-form">
-                    <button class="btn-primary" id="add-category-btn">Add Category</button>
-                </form>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Category Name</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="category-list">
-                        <!-- Dynamic Category List will be appended here -->
-                    </tbody>
-                </table>
-            </section>
+
 
             <!-- Reports Section -->
             <section id="reports" class="content-section">
@@ -164,9 +47,4 @@
                 <h3>Settings</h3>
                 <p>Coming soon...</p>
             </section>
-        </div>
-    </div>
-
-    <script src="./js/adminJS/admin.js"></script>
-</body>
-</html>
+    <%- include("footer.ejs")%>

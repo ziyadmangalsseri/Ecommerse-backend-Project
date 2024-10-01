@@ -1,0 +1,23 @@
+<%- include("sidebar.ejs") %>
+<!-- Page Content -->
+<%- include("header.ejs")%>
+
+ <!-- Orders Section -->
+ <section id="orders" class="content-section">
+    <h3>Order Management</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="order-list">
+            <!-- Dynamic Order List will be appended here -->
+        </tbody>
+    </table>
+</section>
+<%- include("footer.ejs")%>

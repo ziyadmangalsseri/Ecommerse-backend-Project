@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     // Sidebar navigation handling
     const sidebarLinks = document.querySelectorAll("#sidebar ul li a");
@@ -72,15 +71,3 @@ document.addEventListener("DOMContentLoaded", function () {
         customerList.appendChild(row);
     });
 });
-
-
-//CATEGORY
-
-document.addEventListener("DOMContentLoaded",()=>{
-    const form = document.querySelector("category-form")
-    form.addEventListener("submit",(event)=>{
-        event.preventDefault();
-        fetch("/api/admin")
-    })
-})
-    
