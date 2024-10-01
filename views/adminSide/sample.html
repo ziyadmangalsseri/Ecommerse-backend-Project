@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Products Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/css/admin.css"> <!-- Link to your CSS -->
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar (reusable from the dashboard page) -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <img src="/images/logo.png" alt="logo"> <!-- Logo Image -->
+                <h4>Admin Dashboard</h4>
+            </div>
+            <ul class="list-unstyled components">
+                <button id="dashboard-link"><i class="fas fa-tachometer-alt"></i> Dashboard</button>
+                <button class="active" id="products-link"><i class="fas fa-box"></i> Products</button>
+                <button id="orders-link"><i class="fas fa-shopping-cart"></i> Orders</button>
+                <button id="customers-link"><i class="fas fa-users"></i> Customers</button>
+                <button id="categories-link"><i class="fas fa-list-alt"></i> Categories</button>
+                <button id="reports-link"><i class="fas fa-chart-line"></i> Reports</button>
+                <button id="settings-link"><i class="fas fa-cog"></i> Settings</button>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <header>
+                <h2>Product Management</h2>
+                <div class="user-profile">
+                    <img src="https://via.placeholder.com/40" alt="User Avatar">
+                    <span>Admin</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </header>
+
+            <!-- Product Management Section -->
+            <section id="products" class="content-section active">
+                <h3>Product Management</h3>
+                <button class="btn-primary" id="add-product-btn">Add New Product</button>
+
+                <!-- Product Table -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Category</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product-list">
+                        <!-- Dynamic Product List will be appended here -->
+                        <tr>
+                            <td>Product 1</td>
+                            <td>$100</td>
+                            <td>50</td>
+                            <td>Category A</td>
+                            <td>
+                                <button class="edit-btn"><i class="fas fa-edit"></i> Edit</button>
+                                <button class="delete-btn"><i class="fas fa-trash-alt"></i> Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Product 2</td>
+                            <td>$150</td>
+                            <td>30</td>
+                            <td>Category B</td>
+                            <td>
+                                <button class="edit-btn"><i class="fas fa-edit"></i> Edit</button>
+                                <button class="delete-btn"><i class="fas fa-trash-alt"></i> Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Add/Edit Product Form Modal (hidden by default) -->
+                <div id="product-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2 id="modal-title">Add Product</h2>
+                        <form id="product-form">
+                            <div class="form-group">
+                                <label for="product-name">Product Name</label>
+                                <input type="text" id="product-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-price">Price</label>
+                                <input type="number" id="product-price" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-stock">Stock</label>
+                                <input type="number" id="product-stock" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-category">Category</label>
+                                <select id="product-category" required>
+                                    <option value="Category A">Category A</option>
+                                    <option value="Category B">Category B</option>
+                                    <option value="Category C">Category C</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn-primary">Save Product</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="/js/admin.js"></script> <!-- Link to your JS file -->
+</body>
+</html>
