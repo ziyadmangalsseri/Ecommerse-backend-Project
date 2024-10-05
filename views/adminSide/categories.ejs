@@ -2,22 +2,115 @@
 <!-- Page Content -->
 <%- include("header.ejs")%>
 
-             <!-- Categories Section -->
-             <section id="categories" class="content-section active">
-                <h3>Category Management</h3><br>
-                <form class="category-form">
-                    <button class="btn-primary" id="add-category-btn">Add Category</button>
-                </form>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Category Name</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="category-list">
-                        <!-- Dynamic Category List will be appended here -->
-                    </tbody>
-                </table>
-            </section>
+<!-- Categories Section -->
+<section class="category-section">
+  <h3>Category Management</h3>
+
+  <!-- Add Category Form -->
+  <form id="category-form" enctype="multipart/form-data">
+    <input type="text" id="category-name" placeholder="Category Name" />
+    <p style="display: none; color: red" id="errorMsg">
+      Category already exists
+    </p>
+    <input type="text" id="category-description" name="description" placeholder="Category Description">
+    <input type="file" id="category-image" placeholder="Category Image" />
+    <input
+      type="text"
+      id="subcategories"
+      placeholder="Add Subcategories (comma-separated)"
+    />
+    <button type="submit" class="btn-primary" id="add-category-btn">
+      Add Category
+    </button>
+    <button type="button" class="btn-primary" onclick="cancelForm()" >
+        Cancel
+      </button>
+  </form>
+
+  <!-- Category List Table -->
+  <table>
+    <thead>
+      <tr>
+        <th>Category Name</th>
+        <th>Image</th>
+        <th>Description</th>
+        <th>Subcategories</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="category-list">
+      <!-- Dynamic Categories Will Be Appended Here -->
+    </tbody>
+  </table>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("category-form");
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const categoryInputName = document.getElementById("category-name").value.trim();
+      const categoryDescription = document.getElementById("category-description").value.trim();
+      const categoryImage = document.getElementById("category-image").files[0];
+      const subcategories = document.getElementById("subcategories").value.trim();
+      console.log(categoryInputName);
+
+      if (!categoryInputName || !categoryDescription || !categoryImage) {
+        document.getElementById("errorMsg").style.display = "block";
+        alert("Please fill out all required fields and upload an image.");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('name',categoryInputName);
+      formData.append("description",categoryDescription);
+      formData.append("image",categoryImage);
+      formData.append("subcategories",subcategories.split(','));
+
+
+      console.log("axios startede");
+      axios.post("/api/admin/addNewCategory",formData)
+        .then((response)=> {
+          if (response.status === 200) {
+            console.log(response.data.message);
+            swal
+              .fire({
+                icon: "success",
+                title: "success!",
+                text: response.data.message,
+              })
+              .then((result) => {
+                if (result.isConfirmed) {
+                  window.location.href = "/api/admin/categories";
+                }
+              });
+            form.reset();
+          }
+        })
+        .catch((err) => {
+          if (err.response.status === 400) {
+            console.log(err.response.data.message);
+            document.getElementById("errorMsg").style.display = "block";
+          } else {
+            console.error("Error:", err);
+            swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "somthing went wrong!",
+            });
+          }
+        });
+    });
+    function isValidCategoryName(name){
+        return /^[a-zA-Z0-9\s\-]{3,}$/.test(name)
+    }
+  });
+  function cancelForm(){
+    window.location.href = "/api/admin/categories";
+  }
+</script>
+
 <%- include("footer.ejs")%>
