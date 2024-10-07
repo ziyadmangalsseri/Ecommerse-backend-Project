@@ -10,9 +10,7 @@ const orders = (req,res)=>{
 const customers = (req,res)=>{
   res.render("adminSide/customers");
 }
-const categories = (req,res)=>{
-  res.render("adminSide/categories");
-}
+
 const reports= (req,res)=>{
   res.render("adminSide/reports");
 }
@@ -25,7 +23,6 @@ module.exports = {
   products,
   orders,
   customers,
-  categories,
   reports,
   settings
 };

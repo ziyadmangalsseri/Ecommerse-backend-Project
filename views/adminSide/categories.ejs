@@ -37,9 +37,17 @@
         <th>Subcategories</th>
         <th>Actions</th>
       </tr>
+
     </thead>
     <tbody id="category-list">
       <!-- Dynamic Categories Will Be Appended Here -->
+       <% Categories.forEach((category,index)=>{ %>
+        <tr>
+          <!-- <td> <% index+1 %> </td> -->
+          <td> <% category.name %> </td>
+          <td> <img src="" alt=""> </td>
+        </tr>
+        <% }) %>
     </tbody>
   </table>
 </section>

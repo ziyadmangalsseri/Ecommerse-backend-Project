@@ -1,6 +1,15 @@
 const categoryModel = require("../../models/CategoryModels");
 const express = require("express");
 
+const categorypage = async (req,res)=>{
+    try{
+        const Categories = await categoryModel.find()
+        res.render("adminSide/categories",{Categories});
+    }catch(error){
+        console.error(error.message);
+        
+    }
+  }
 
 //add category model
 const addNewCategory = async (req, res) => {
@@ -51,4 +60,7 @@ const addNewCategory = async (req, res) => {
   }
 };
 
-module.exports = addNewCategory;
+module.exports = {
+    addNewCategory,
+    categorypage
+};

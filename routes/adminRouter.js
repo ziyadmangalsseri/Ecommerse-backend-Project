@@ -1,13 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const addNewCategory = require('../controller/admin/categoryCtrl');
+const {
+    addNewCategory,
+    categorypage
+} = require('../controller/admin/categoryCtrl');
 const upload = require("../middlewares/upload");
 const {
     adminPage,
     products,
     orders,
     customers,
-    categories,
     reports,
     settings,
 } = require('../controller/admin/adminCtrl')
@@ -21,7 +23,7 @@ router.get("/orders", orders);
 router.get("/customers", customers);
 
 //categories
-router.get("/categories", categories);
+router.get("/categories", categorypage);
 router.post("/addNewCategory", upload.single("image"), addNewCategory);
 
 
