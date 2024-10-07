@@ -4,7 +4,7 @@ const {
     addNewCategory,
     categorypage
 } = require('../controller/admin/categoryCtrl');
-const upload = require("../middlewares/upload");
+// const upload = require("../middlewares/upload");
 const {
     adminPage,
     products,
@@ -24,7 +24,7 @@ router.get("/customers", customers);
 
 //categories
 router.get("/categories", categorypage);
-router.post("/addNewCategory", upload.single("image"), addNewCategory);
+router.post("/addNewCategory", addNewCategory);
 
 
 router.get("/reports", reports);

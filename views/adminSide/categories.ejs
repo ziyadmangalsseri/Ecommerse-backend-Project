@@ -7,13 +7,13 @@
   <h3>Category Management</h3>
 
   <!-- Add Category Form -->
-  <form id="category-form" enctype="multipart/form-data">
+  <form id="category-form" >
     <input type="text" id="category-name" placeholder="Category Name" />
     <p style="display: none; color: red" id="errorMsg">
       Category already exists
     </p>
     <input type="text" id="category-description" name="description" placeholder="Category Description">
-    <input type="file" id="category-image" placeholder="Category Image" />
+    <!-- <input type="file" id="category-image" placeholder="Category Image" /> -->
     <input
       type="text"
       id="subcategories"
@@ -32,7 +32,7 @@
     <thead>
       <tr>
         <th>Category Name</th>
-        <th>Image</th>
+        <!-- <th>Image</th> -->
         <th>Description</th>
         <th>Subcategories</th>
         <th>Actions</th>
@@ -41,13 +41,23 @@
     </thead>
     <tbody id="category-list">
       <!-- Dynamic Categories Will Be Appended Here -->
-       <% Categories.forEach((category,index)=>{ %>
+       <% if (Categories.length > 0) { %>
+       <% Categories.forEach((category, index) => { %>
+
         <tr>
           <!-- <td> <% index+1 %> </td> -->
-          <td> <% category.name %> </td>
-          <td> <img src="" alt=""> </td>
+          <td> <%= category.name %> </td>
+          <!-- <td> <img src="/images/<% category.image %>" alt="<% category.image %>" style="width: 100%;"> </td> -->
+          <td> <%= category.description %></td>
+          <td> <%= category.subcategories.join(",") %></td>
+          <td></td>
         </tr>
         <% }) %>
+        <% }else{ %>
+          <tr>
+            <td colspan="4"> No categories available</td>
+          </tr>
+          <% } %>
     </tbody>
   </table>
 </section>
@@ -62,28 +72,34 @@
 
       const categoryInputName = document.getElementById("category-name").value.trim();
       const categoryDescription = document.getElementById("category-description").value.trim();
-      const categoryImage = document.getElementById("category-image").files[0];
+      // const categoryImage = document.getElementById("category-image").files[0];
       const subcategories = document.getElementById("subcategories").value.trim();
       console.log(categoryInputName);
 
-      if (!categoryInputName || !categoryDescription || !categoryImage) {
+      if (!categoryInputName || !categoryDescription ) {
         document.getElementById("errorMsg").style.display = "block";
         alert("Please fill out all required fields and upload an image.");
         return;
       }
 
-      const formData = new FormData();
-      formData.append('name',categoryInputName);
-      formData.append("description",categoryDescription);
-      formData.append("image",categoryImage);
-      formData.append("subcategories",subcategories.split(','));
+      const categoryData = {
+        name : categoryInputName,
+        description : categoryDescription,
+        subcategories : subcategories.split(',')
+      }
+
+      // const formData = new FormData();
+      // formData.append('name',categoryInputName);
+      // formData.append("description",categoryDescription);
+      // // formData.append("image",categoryImage);
+      // formData.append("subcategories",subcategories.split(','));
 
 
       console.log("axios startede");
-      axios.post("/api/admin/addNewCategory",formData)
+      axios.post("/api/admin/addNewCategory",categoryData)
         .then((response)=> {
           if (response.status === 200) {
-            console.log(response.data.message);
+            console.log("response is : ",response.data.message);
             swal
               .fire({
                 icon: "success",
