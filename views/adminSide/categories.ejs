@@ -4,6 +4,7 @@
 
 <!-- Categories Section -->
 <section class="category-section">
+  <div class="container">
   <h3>Category Management</h3>
 
   <!-- Add Category Form -->
@@ -50,7 +51,12 @@
           <!-- <td> <img src="/images/<% category.image %>" alt="<% category.image %>" style="width: 100%;"> </td> -->
           <td> <%= category.description %></td>
           <td> <%= category.subcategories.join(",") %></td>
-          <td></td>
+          <td class="action-button-td">
+            <div class="action-button-div">
+              <a id="action-button" href=""><button  class="btn-edit">Edit</button></a>
+              <a id="action-button" href=""><button  class="btn-danger">Delete</button></a>
+            </div>
+          </td>
         </tr>
         <% }) %>
         <% }else{ %>
@@ -60,6 +66,7 @@
           <% } %>
     </tbody>
   </table>
+</div>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

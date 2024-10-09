@@ -4,21 +4,57 @@
 
  <!-- Products Section -->
  <section id="products" class="content-section active">
-    <h3>Product Management</h3>
-    <button class="btn-primary" id="add-product-btn">Add Product</button>
-    <table>
-        <thead>
-            <tr>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Stock</th>
-                 <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="product-list">
-            <!-- Dynamic Product List will be appended here -->
-        </tbody>
-    </table>
+    <div class="container">
+    <h2>Add New Product</h2>
+    <form id="addProductForm" enctype="multipart/form-data">
+      
+      <!-- Product Name -->
+      <div class="form-group">
+        <label for="productName">Product Name</label>
+        <input type="text" id="productName" name="name" placeholder="Enter product name" required>
+      </div>
+
+      <!-- Product Price -->
+      <div class="form-group">
+        <label for="productPrice">Product Price ($)</label>
+        <input type="number" id="productPrice" name="price" placeholder="Enter product price" step="0.01" min="0" required>
+      </div>
+
+      <!-- Product Category -->
+      <div class="form-group">
+        <label for="productCategory">Category</label>
+        <select id="productCategory" name="category" required>
+          <option selected disabled>Select category</option>
+          <option value="electronics">Electronics</option>
+          <option value="clothing">Clothing</option>
+          <option value="home">Home Appliances</option>
+          <option value="books">Books</option>
+        </select>
+      </div>
+
+      <!-- Product Image Upload -->
+      <div class="form-group">
+        <label for="productImage">Upload Product Image</label>
+        <input type="file" id="productImage" name="image" accept="image/*" required>
+      </div>
+
+      <!-- Product Description -->
+      <div class="form-group">
+        <label for="productDescription">Description</label>
+        <textarea id="productDescription" name="description" rows="4" placeholder="Enter product description" required></textarea>
+      </div>
+
+      <!-- Stock Quantity -->
+      <div class="form-group">
+        <label for="productStock">Stock Quantity</label>
+        <input type="number" id="productStock" name="stock" placeholder="Enter stock quantity" min="0" required>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit">Add Product</button>
+    </form>
+  </div>
+
 </section>
 
 <%- include("footer.ejs")%>

@@ -74,7 +74,9 @@ header {
   align-items: center;
   background-color: rgb(21,126,210);
   padding: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
 }
 
 header h2 {
@@ -85,6 +87,8 @@ header h2 {
 .user-profile {
   display: flex;
   align-items: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .user-profile img {
@@ -182,6 +186,9 @@ table th {
   border-radius: 5px;
   cursor: pointer;
 }
+#category-form button:hover{
+  background-color: #0557af ;
+}
 
 #category-form textarea {
   resize: none;
@@ -216,6 +223,19 @@ table img {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+.action-button-td{
+  display: flex;
+  justify-content: center;
+}
+.action-button-div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+#action-button{
+  /* width: 50%; */
 }
 
 .btn-edit:hover {
