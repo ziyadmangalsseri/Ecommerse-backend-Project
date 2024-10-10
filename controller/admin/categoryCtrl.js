@@ -74,8 +74,34 @@ const addNewCategory = async (req, res) => {
   }
 };
 
+// Delete Category
+
+const deleteCategory = async (req, res) => {
+  try {
+    const categoryId = req.params.id;
+    console.log(categoryId);
+    
+    await categoryModel.findByIdAndDelete(categoryId);
+    res.redirect("/api/admin/categories");
+  
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ success: false, message: "Internal server error" });  // fixed typo
+  }
+};
+
+
+
+//  Edit Category
+
+const editCategory = async (req,res)=>{
+
+}
+
 // Export the functions for use in routes
 module.exports = {
   addNewCategory,
   categorypage,
+  deleteCategory,
+  editCategory,
 };

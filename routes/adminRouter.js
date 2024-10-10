@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const {
     addNewCategory,
-    categorypage
+    categorypage,
+    deleteCategory,
+    editCategory,
 } = require('../controller/admin/categoryCtrl');
 // const upload = require("../middlewares/upload");
 const {
@@ -25,6 +27,8 @@ router.get("/customers", customers);
 //categories
 router.get("/categories", categorypage);
 router.post("/addNewCategory", addNewCategory);
+router.post("/deleteCategory/:id",deleteCategory);
+router.post("/editCategory",editCategory);
 
 
 router.get("/reports", reports);
