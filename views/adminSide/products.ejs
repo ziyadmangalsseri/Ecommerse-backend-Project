@@ -24,11 +24,18 @@
       <div class="form-group">
         <label for="productCategory">Category</label>
         <select id="productCategory" name="category" required>
-          <option selected disabled>Select category</option>
-          <option value="electronics">Electronics</option>
-          <option value="clothing">Clothing</option>
+            <% if (categories.length > 0){ %>
+                <option selected disabled>Select category</option>
+                <% categories.forEach((category,index)=>{ %>
+                    <option value="<%= category.name  %>"><%= category.name  %></option>
+
+                    <% }) %>
+                <% }else{ %>
+                    <option selected disabled>NO categories available</option>
+                    <% }%>
+          <!-- <option value="clothing">Clothing</option>
           <option value="home">Home Appliances</option>
-          <option value="books">Books</option>
+          <option value="books">Books</option> -->
         </select>
       </div>
 

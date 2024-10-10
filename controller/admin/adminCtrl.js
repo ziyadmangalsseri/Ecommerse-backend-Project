@@ -1,9 +1,6 @@
 const adminPage = (req, res) => {
   res.render("adminSide/admin");
 };
-const products = (req,res)=>{
-  res.render("adminSide/products");
-}
 const orders = (req,res)=>{
   res.render("adminSide/orders");
 }
@@ -20,7 +17,6 @@ const settings = (req,res)=>{
 
 module.exports = {
   adminPage,
-  products,
   orders,
   customers,
   reports,

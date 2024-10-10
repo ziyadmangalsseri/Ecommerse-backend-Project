@@ -9,13 +9,16 @@ const {
 // const upload = require("../middlewares/upload");
 const {
     adminPage,
-    products,
     orders,
     customers,
     reports,
     settings,
 } = require('../controller/admin/adminCtrl')
 
+// Product 
+const {
+    products,
+} = require("../controller/admin/productCtrl")
 // const multer = require("multer");
 // const upload = multer({ dest: "uploads/" });
 
