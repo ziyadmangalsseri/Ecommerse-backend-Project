@@ -1,3 +1,4 @@
+const { log } = require("debug/src/node");
 const categoryModel = require("../../models/CategoryModels");
 const express = require("express");
 
@@ -95,7 +96,15 @@ const deleteCategory = async (req, res) => {
 //  Edit Category
 
 const editCategory = async (req,res)=>{
-
+  try{
+    const categoryId = req.params.id;
+    console.log(categoryId);
+    
+    await categoryModel.findById(categoryId)
+  }catch(err){
+    console.error(err.message);
+    
+  }
 }
 
 // Export the functions for use in routes

@@ -31,7 +31,7 @@ router.get("/customers", customers);
 router.get("/categories", categorypage);
 router.post("/addNewCategory", addNewCategory);
 router.post("/deleteCategory/:id",deleteCategory);
-router.post("/editCategory",editCategory);
+router.post("/editCategory/:id",editCategory);
 
 
 router.get("/reports", reports);
