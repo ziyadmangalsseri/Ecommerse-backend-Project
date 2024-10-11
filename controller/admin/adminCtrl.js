@@ -20,5 +20,5 @@ module.exports = {
   orders,
   customers,
   reports,
-  settings
+  settings,
 };

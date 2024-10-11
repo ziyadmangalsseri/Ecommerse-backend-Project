@@ -95,12 +95,41 @@ const deleteCategory = async (req, res) => {
 
 //  Edit Category
 
-const editCategory = async (req,res)=>{
+const editCategoryPage = async (req,res)=>{
   try{
     const categoryId = req.params.id;
     console.log(categoryId);
     
-    await categoryModel.findById(categoryId)
+    const categories = await categoryModel.findById(categoryId);
+    if(categories){
+      res.render("adminSide/editCategory",{categories});
+    }else{
+      res.status(500).json({success:false,message:"Category is not found"});
+    }
+
+  }catch(err){
+    console.error(err.message);
+    
+  }
+}
+
+
+// Update Category
+
+const updateCategory = async (req,res)=>{
+  try{
+  const {name, description, subcategories} = req.body;
+  const categoryId = req.params.id;
+
+  if(categoryId){
+    await categoryModel.findByIdAndUpdate(categoryId,{
+      name,
+      description,
+      subcategories,
+    })
+    res.redirect("/api/admin/categories")
+  }
+
   }catch(err){
     console.error(err.message);
     
@@ -112,5 +141,6 @@ module.exports = {
   addNewCategory,
   categorypage,
   deleteCategory,
-  editCategory,
+  editCategoryPage,
+  updateCategory,
 };

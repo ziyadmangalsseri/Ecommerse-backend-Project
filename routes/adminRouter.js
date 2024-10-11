@@ -4,7 +4,8 @@ const {
     addNewCategory,
     categorypage,
     deleteCategory,
-    editCategory,
+    editCategoryPage,
+    updateCategory,
 } = require('../controller/admin/categoryCtrl');
 // const upload = require("../middlewares/upload");
 const {
@@ -31,7 +32,8 @@ router.get("/customers", customers);
 router.get("/categories", categorypage);
 router.post("/addNewCategory", addNewCategory);
 router.post("/deleteCategory/:id",deleteCategory);
-router.post("/editCategory/:id",editCategory);
+router.get("/editCategory/:id",editCategoryPage);
+router.post("/updateCategory/:id",updateCategory);
 
 
 router.get("/reports", reports);
