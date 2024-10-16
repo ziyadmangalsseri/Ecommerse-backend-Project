@@ -46,8 +46,14 @@
             <li class="wishlist"><a href="/my-wishlist"><span>Wishlist</span></a></li>
             <li class="header_cart hidden-xs"><a href="#"><span>My Cart</span></a></li>
             <li class="check"><a href="/checkout"><span>Checkout</span></a></li>
-            <li class="login"><a href="/login"><span>Login</span></a></li>
-          </ul>
+            <% if(isLoggedIn){ %>
+              <!-- <form class="logout-form"> -->
+                <li class="login"><a href="/logout"><span>Logout</span></a></li>
+              <!-- </form> -->
+              <% }else{ %>
+                <li class="login"><a href="/login"><span>Login</span></a></li>
+                <% } %>
+          </ul> 
         </div>
         <!-- /.cnt-account -->
         

@@ -1,11 +1,18 @@
 const home = (req, res) => {
-  res.render("home/home");
+
+  const {userId , isLoggedIn} = req.session;
+  res.render("home/home",{title:'home',isLoggedIn:req.session?.isLoggedIn});
 };
+const logOut = (req,res) =>{
+  req.session.destroy();
+  res.redirect("/home")
+}
 const forgotPasswordPage = (req, res) => {
   res.render("userSide/forgot-password-page");
 };
 const login = (req, res) => {
-  res.render("userSide/sign-in");
+  const {isLoggedIn,email,userId} = req.session;
+  res.render("userSide/sign-in",{title:'login',isLoggedIn:req.session?.isLoggedIn});
 };
 const otpverification = (req, res) => {
   res.render("userSide/otpVerification");
@@ -73,4 +80,5 @@ module.exports = {
   faq,
   error,
   myAccount,
+  logOut,
 };

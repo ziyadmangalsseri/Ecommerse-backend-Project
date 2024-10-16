@@ -32,8 +32,16 @@ const createUser = async (req, res) => {
 
       if (newUser.isAdmin) {
         res.status(200).redirect("/adminPage");
+        req.session.isAdminLoggedIn = true;
+
       }if(newUser){
         res.status(200).redirect("/home");
+
+          console.log(findUser);
+          req.session.isLoggedIn = true;
+          req.session.email = findUser.email;
+          req.session.userId = findUser._id
+        
       }
     } else {
       res.json({
@@ -62,6 +70,13 @@ const userlogin = async (req, res) => {
         .status(401)
         .json({ success: false, message: "invalid password" });
     }
+    if(hashPassword){
+
+      console.log(findUser);
+      req.session.isLoggedIn = true;
+      req.session.email = findUser.email;
+      req.session.userId = findUser._id
+    }
 
     if (findUser.isAdmin) {
       res.status(200).json({
@@ -69,11 +84,9 @@ const userlogin = async (req, res) => {
         message: "admin login successfully",
         redirectUrl: "/api/admin/dashboard",
       });
+      req.session.isAdminLoggedIn = true;
     } else {
-      console.log(findUser);
-
-      req.session.email = findUser.email;
-      res
+        res
         .status(200)
         .json({ success: true, message: "successfully", redirectUrl: "/home" });
       console.log(req.session.email);

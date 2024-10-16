@@ -89,8 +89,7 @@
       </div>
 
       <!-- Error message -->
-      <div>
-        <input type="text" id="category-name" placeholder="Category Name" />
+      <div>   
         <p style="display: none; color: red" id="errorMsg">
           Category already exists
         </p>
@@ -101,10 +100,12 @@
   </div>
 </section>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("addProductForm");
-    form.document.addEventListener("submit", (event) => {
+    form.addEventListener("submit", (event) => {
       event.preventDefault();
 
       const productInputName = document

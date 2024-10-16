@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const upload = require("../middlewares/upload");
 const {
     addNewCategory,
     categorypage,
@@ -37,7 +38,7 @@ router.post("/updateCategory/:id",updateCategory);
 
 // Products
 router.get("/products", products);
-router.post("addProduct",addProduct);
+router.post("/addProduct",upload.single("image"),addProduct);
 
 
 router.get("/reports", reports);

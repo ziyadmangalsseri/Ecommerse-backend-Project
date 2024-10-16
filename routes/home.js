@@ -22,6 +22,7 @@ const {
   faq,
   error,
   myAccount,
+  logOut,
 } = require("../controller/homeCtrl");
 
 // Public Routes
@@ -46,6 +47,7 @@ router.get("/forgot-password-page", forgotPasswordPage);
 router.get("/login", login);
 router.get("/otpverification", otpverification);
 router.get("/reset-password", resetPassword);
+router.get("/logout",logOut);
 
 // Exporting the router to be used in other parts of the application
 module.exports = router;
