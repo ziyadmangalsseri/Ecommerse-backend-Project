@@ -5,7 +5,7 @@ const home = (req, res) => {
 };
 const logOut = (req,res) =>{
   req.session.destroy();
-  res.redirect("/home")
+  res.redirect("/home");  
 }
 const forgotPasswordPage = (req, res) => {
   res.render("userSide/forgot-password-page");
@@ -15,50 +15,64 @@ const login = (req, res) => {
   res.render("userSide/sign-in",{title:'login',isLoggedIn:req.session?.isLoggedIn});
 };
 const otpverification = (req, res) => {
-  res.render("userSide/otpVerification");
+  const {isLoggedIn,email,userId} = req.session;
+  res.render("userSide/otpVerification",{isLoggedIn:req.session?.isLoggedIn});
 };
 const resetPassword = (req, res) => {
-  res.render("userSide/reset-password");
+  res.render("userSide/reset-password",{isLoggedIn:req.session?.isLoggedIn});
 };
 
 const category = (req, res) => {
-  res.render("home/category");
+  const {isLoggedIn,email,userId} = req.session;
+  res.render("home/category",{isLoggedIn:req.session?.isLoggedIn});
 };
 const detail = (req, res) => {
-  res.render("home/detail");
+  const {isLoggedIn,email,userId} = req.session;
+  res.render("home/detail",{isLoggedIn:req.session?.isLoggedIn});
 };
 const shoppingCart = (req, res) => {
-  res.render("home/shopping-cart");
+  const {isLoggedIn,email,userId} = req.session;
+  res.render("home/shopping-cart",{isLoggedIn:req.session?.isLoggedIn});
 };
 const checkout = (req, res) => {
-  res.render("home/checkout");
+  const {isLoggedIn,email,userId} = req.session;
+  res.render("home/checkout",{isLoggedIn:req.session?.isLoggedIn});
 };
 const blog = (req, res) => {
-  res.render("home/blog");
+  const {isLoggedIn,email,userId} = req.session;
+  res.render("home/blog",{isLoggedIn:req.session?.isLoggedIn});
 };
 const blogDetails = (req, res) => {
-  res.render("home/blog-details");
+  const {isLoggedIn,email,userId} = req.session;
+  res.render("home/blog-details",{isLoggedIn:req.session?.isLoggedIn});
 };
 const contact = (req, res) => {
-  res.render("home/contact");
+  const {isLoggedIn,email,userId} = req.session;
+  res.render("home/contact",{isLoggedIn:req.session?.isLoggedIn});
 };
 const myWishlist = (req, res) => {
-  res.render("home/my-wishlist");
+  const {isLoggedIn,email,userId} = req.session;
+  res.render("home/my-wishlist",{isLoggedIn:req.session?.isLoggedIn});
 };
 const termsConditions = (req, res) => {
-  res.render("home/terms-conditions");
+  const {isLoggedIn,email,userId} = req.session;
+  res.render("home/terms-conditions",{isLoggedIn:req.session?.isLoggedIn});
 };
 const trakOrders = (req, res) => {
-  res.render("home/track-orders");
+  const {isLoggedIn,email,userId} = req.session;
+  res.render("home/track-orders",{isLoggedIn:req.session?.isLoggedIn});
 };
 const faq = (req, res) => {
-  res.render("home/faq");
+  const {isLoggedIn,email,userId} = req.session;
+  res.render("home/faq",{isLoggedIn:req.session?.isLoggedIn});
 };
 const error = (req, res) => {
-  res.render("home/404");
+  const {isLoggedIn,email,userId} = req.session;
+  res.render("home/404",{isLoggedIn:req.session?.isLoggedIn});
 };
 const myAccount = (req, res) => {
-  res.render("home/myAccount");
+  const {isLoggedIn,email,userId} = req.session;
+  res.render("home/myAccount",{isLoggedIn:req.session?.isLoggedIn});
 };
 
 module.exports = {

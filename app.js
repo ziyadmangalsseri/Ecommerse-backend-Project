@@ -36,6 +36,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(express.static('public/assets'));
 app.use(express.static(path.join(__dirname,'public')));
 app.use(express.static(path.join(__dirname,"public/assets")));
+app.use('/assets/images/products', express.static(path.join(__dirname, 'public/images/products')));
+
 
 
 // Route handlers

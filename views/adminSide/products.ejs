@@ -89,7 +89,7 @@
       </div>
 
       <!-- Error message -->
-      <div>   
+      <div>
         <p style="display: none; color: red" id="errorMsg">
           Category already exists
         </p>
@@ -97,7 +97,75 @@
       <!-- Submit Button -->
       <button type="submit">Add Product</button>
     </form>
-  </div>
+  
+  <!-- Product List Table -->
+  <table>
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Image</th>
+        <th>Description</th>
+        <th>price</th>
+        <th>category</th>
+        <th>stockQuantity</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="category-list">
+      <!-- Dynamic Categories Will Be Appended Here -->
+      <% if (products.length > 0) { %> <% products.forEach((product, index) => {
+      %>
+
+      <tr>
+        <!-- <td> <% index+1 %> </td> -->
+        <td><%= product.name %></td>
+        <td>
+          <img
+            src="/images/products/<%= product.image %>"
+            alt="<%= product.image %>"
+            style="width: 25%; height: 25%;"
+          />    
+        </td>
+        <td><%= product.description %></td>
+        <td><%= product.price %></td>
+        <td><%= product.category %></td>
+        <td><%= product.stock %></td>
+        <td class="action-button-td">
+          <div class="action-button-div">
+            <form
+              class="edit-form"
+              action="/api/admin/editcategory/<%= product._id %> "
+              method="get"
+            >
+              <a id="action-button" href=""
+                ><button class="btn-edit">Edit</button></a
+              >
+            </form>
+            <form
+              action="/api/admin/deleteCategory/<%= product._id %>"
+              class="delete-form"
+              data-productId="<%= product._id %>"
+              method="post"
+            >
+              <button
+                id="action-button"
+                class="btn-danger delete-category-btn"
+                type="button"
+              >
+                Delete
+              </button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      <% }) %> <% }else{ %>
+      <tr>
+        <td colspan="4">No Products available</td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -105,6 +173,7 @@
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("addProductForm");
+
     form.addEventListener("submit", (event) => {
       event.preventDefault();
 
@@ -120,6 +189,7 @@
       const productStockQuantity =
         document.getElementById("productStock").value;
 
+      // Form validation check
       if (
         !productInputName ||
         !productPrice ||
@@ -133,15 +203,18 @@
         return;
       }
 
+      // Prepare form data
       const formData = new FormData();
-      formData.append("name", productName);
+      formData.append("name", productInputName);
       formData.append("price", productPrice);
       formData.append("category", productCategory);
-      formData.append("image", productImage); // File is appended here
+      formData.append("image", productImage);
       formData.append("description", productDescription);
       formData.append("stock", productStockQuantity);
 
       console.log("axios started");
+
+      // Axios request
       axios
         .post("/api/admin/addProduct", formData, {
           headers: {
@@ -150,21 +223,32 @@
         })
         .then((response) => {
           if (response.status === 200) {
-            swal.fire({
+            // SweetAlert success modal
+            return swal.fire({
               icon: "success",
-              title: "success!",
+              title: "Success!",
               text: response.data.message,
             });
           }
         })
+        .then((result) => {
+          // Handling result from SweetAlert
+          if (result.isConfirmed) {
+            window.location.href = "/api/admin/products";
+          }
+        })
         .catch((err) => {
           console.error(err.message);
+          // Error handling in case Axios fails
           swal.fire({
             icon: "error",
             title: "Error",
             text: "There was an error while adding the product.",
-          })
-        })
+          });
+        });
+
+      // Reset form after submission
+      form.reset();
     });
   });
 </script>
