@@ -1,7 +1,11 @@
-const home = (req, res) => {
+const productModel = require("../models/ProductModeles");
+
+const home = async (req, res) => {
 
   const {userId , isLoggedIn} = req.session;
-  res.render("home/home",{title:'home',isLoggedIn:req.session?.isLoggedIn});
+  const products = await productModel.find();
+
+  res.render("home/home",{title:'home',isLoggedIn:req.session?.isLoggedIn,products});
 };
 const logOut = (req,res) =>{
   req.session.destroy();

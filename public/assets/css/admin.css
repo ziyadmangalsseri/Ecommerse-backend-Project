@@ -217,10 +217,10 @@ table img {
 }
 .image-td{
   width: auto;
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   justify-content: center; */
-  /* background-color: #007bff;
+  /* background-color: #007bff; */
 }
 .show-product-image{
   display: flex;
