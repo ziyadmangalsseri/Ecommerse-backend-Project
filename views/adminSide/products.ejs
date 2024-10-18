@@ -97,75 +97,75 @@
       <!-- Submit Button -->
       <button type="submit">Add Product</button>
     </form>
-  
-  <!-- Product List Table -->
-  <table>
-    <thead>
-      <tr>
-        <th>Product Name</th>
-        <th>Image</th>
-        <th>Description</th>
-        <th>price</th>
-        <th>category</th>
-        <th>stockQuantity</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody id="category-list">
-      <!-- Dynamic Categories Will Be Appended Here -->
-      <% if (products.length > 0) { %> <% products.forEach((product, index) => {
-      %>
 
-      <tr>
-        <!-- <td> <% index+1 %> </td> -->
-        <td><%= product.name %></td>
-        <td>
-          <img
-            src="/images/products/<%= product.image %>"
-            alt="<%= product.image %>"
-            style="width: 25%; height: 25%;"
-          />    
-        </td>
-        <td><%= product.description %></td>
-        <td><%= product.price %></td>
-        <td><%= product.category %></td>
-        <td><%= product.stock %></td>
-        <td class="action-button-td">
-          <div class="action-button-div">
-            <form
-              class="edit-form"
-              action="/api/admin/editcategory/<%= product._id %> "
-              method="get"
-            >
-              <a id="action-button" href=""
-                ><button class="btn-edit">Edit</button></a
+    <!-- Product List Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Image</th>
+          <th>Description</th>
+          <th>price</th>
+          <th>category</th>
+          <th>stockQuantity</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="category-list">
+        <!-- Dynamic Categories Will Be Appended Here -->
+        <% if (products.length > 0) { %> <% products.forEach((product, index) =>
+        { %>
+
+        <tr>
+          <!-- <td> <% index+1 %> </td> -->
+          <td><%= product.name %></td>
+          <td class="image-td">
+            <img
+              src="/images/products/<%= product.image %>"
+              alt="<%= product.image %>"
+              class="td-image"
+            />
+          </td>
+          <td><%= product.description %></td>
+          <td><%= product.price %></td>
+          <td><%= product.category %></td>
+          <td><%= product.stock %></td>
+          <td class="action-button-td">
+            <div class="action-button-div">
+              <form
+                class="edit-form"
+                action="/api/admin/editProduct/<%= product._id %> "
+                method="get"
               >
-            </form>
-            <form
-              action="/api/admin/deleteCategory/<%= product._id %>"
-              class="delete-form"
-              data-productId="<%= product._id %>"
-              method="post"
-            >
-              <button
-                id="action-button"
-                class="btn-danger delete-category-btn"
-                type="button"
+                <a id="action-button" href=""
+                  ><button class="btn-edit">Edit</button></a
+                >
+              </form>
+              <form
+                action="/api/admin/deleteProduct/<%= product._id %>"
+                class="delete-form"
+                data-productId="<%= product._id %>"
+                method="post"
               >
-                Delete
-              </button>
-            </form>
-          </div>
-        </td>
-      </tr>
-      <% }) %> <% }else{ %>
-      <tr>
-        <td colspan="4">No Products available</td>
-      </tr>
-      <% } %>
-    </tbody>
-  </table>
-</div>
+                <button
+                  id="action-button"
+                  class="btn-danger delete-product-btn "
+                  type="button"
+                >
+                  Delete
+                </button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        <% }) %> <% }else{ %>
+        <tr>
+          <td colspan="7">No Products available</td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -249,6 +249,30 @@
 
       // Reset form after submission
       form.reset();
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".delete-product-btn").forEach((button) => {
+      button.addEventListener("click", function() {
+        const deleteForm = this.closest(".delete-form");
+        const productId = deleteForm.dataset.productId;
+
+        swal
+          .fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+          })
+          .then((result) => {
+            if (result.isConfirmed) {
+              deleteForm.submit();
+            }
+          });
+      });
     });
   });
 </script>

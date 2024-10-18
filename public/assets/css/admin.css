@@ -215,7 +215,23 @@ table img {
   height: 60px;
   object-fit: cover;
 }
-
+.image-td{
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center; */
+  /* background-color: #007bff;
+}
+.show-product-image{
+  display: flex;
+  flex-direction: row;
+  /* background-color: #007bff; */
+  
+}
+.td-image{
+  width: 100px;
+  height: 100px;
+}
 .btn-edit {
   background-color: #28a745;
   color: white;
@@ -225,12 +241,17 @@ table img {
   cursor: pointer;
 }
 .action-button-td{
-  display: flex;
+  /* display: flex;
+  flex-direction: column;
   justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: #007bff; */
 }
 .action-button-div{
   width: 100%;
   display: flex;
+  height: 100%;
   justify-content: center;
   gap: 5px;
 }

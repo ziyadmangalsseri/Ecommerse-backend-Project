@@ -36,5 +36,9 @@ const upload = multer({
     }
   },
 });
+// if(multer.limits.fileSize > 5000000){
+//   console.log("image size is bigger");
+  
+// }
 
 module.exports = upload;

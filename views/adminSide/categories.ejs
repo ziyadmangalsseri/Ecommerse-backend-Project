@@ -5,72 +5,92 @@
 <!-- Categories Section -->
 <section class="category-section">
   <div class="container">
-  <h3>Category Management</h3>
+    <h3>Category Management</h3>
 
-  <!-- Add Category Form -->
-  <form id="category-form" >
-    <input type="text" id="category-name" placeholder="Category Name" />
-    <p style="display: none; color: red" id="errorMsg">
-      Category already exists
-    </p>
-    <input type="text" id="category-description" name="description" placeholder="Category Description">
-    <!-- <input type="file" id="category-image" placeholder="Category Image" /> -->
-    <input
-      type="text"
-      id="subcategories"
-      placeholder="Add Subcategories (comma-separated)"
-    />
-    <button type="submit" class="btn-primary" id="add-category-btn">
-      Add Category
-    </button>
-    <button type="button" class="btn-primary" onclick="cancelForm()" >
+    <!-- Add Category Form -->
+    <form id="category-form">
+      <input type="text" id="category-name" placeholder="Category Name" />
+      <p style="display: none; color: red" id="errorMsg">
+        Category already exists
+      </p>
+      <input
+        type="text"
+        id="category-description"
+        name="description"
+        placeholder="Category Description"
+      />
+      <!-- <input type="file" id="category-image" placeholder="Category Image" /> -->
+      <input
+        type="text"
+        id="subcategories"
+        placeholder="Add Subcategories (comma-separated)"
+      />
+      <button type="submit" class="btn-primary" id="add-category-btn">
+        Add Category
+      </button>
+      <button type="button" class="btn-primary" onclick="cancelForm()">
         Cancel
       </button>
-  </form>
+    </form>
 
-  <!-- Category List Table -->
-  <table>
-    <thead>
-      <tr>
-        <th>Category Name</th>
-        <!-- <th>Image</th> -->
-        <th>Description</th>
-        <th>Subcategories</th>
-        <th>Actions</th>
-      </tr>
-
-    </thead>
-    <tbody id="category-list">
-      <!-- Dynamic Categories Will Be Appended Here -->
-       <% if (Categories.length > 0) { %>
-       <% Categories.forEach((category, index) => { %>
+    <!-- Category List Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Category Name</th>
+          <!-- <th>Image</th> -->
+          <th>Description</th>
+          <th>Subcategories</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="category-list">
+        <!-- Dynamic Categories Will Be Appended Here -->
+        <% if (Categories.length > 0) { %> <% Categories.forEach((category,
+        index) => { %>
 
         <tr>
           <!-- <td> <% index+1 %> </td> -->
-          <td> <%= category.name %> </td>
+          <td><%= category.name %></td>
           <!-- <td> <img src="/images/<% category.image %>" alt="<% category.image %>" style="width: 100%;"> </td> -->
-          <td> <%= category.description %></td>
-          <td> <%= category.subcategories.join(",") %></td>
+          <td><%= category.description %></td>
+          <td><%= category.subcategories.join(",") %></td>
           <td class="action-button-td">
             <div class="action-button-div">
-              <form class="edit-form" action="/api/admin/editcategory/<%= category._id %> " method="get">
-                <a id="action-button" href=""><button  class="btn-edit">Edit</button></a>
+              <form
+                class="edit-form"
+                action="/api/admin/editcategory/<%= category._id %> "
+                method="get"
+              >
+                <a id="action-button" href=""
+                  ><button class="btn-edit">Edit</button></a
+                >
               </form>
-              <form action="/api/admin/deleteCategory/<%= category._id %>" class="delete-form" data-categoryId="<%= category._id %>" method="post">
-              <button   id="action-button" class="btn-danger delete-category-btn" type="button">Delete</button>
+              <form
+                action="/api/admin/deleteCategory/<%= category._id %>"
+                class="delete-form"
+                data-categoryId="<%= category._id %>"
+                method="post"
+              >
+                <button
+                  id="action-button"
+                  class="btn-danger delete-category-btn"
+                  type="button"
+                >
+                  Delete
+                </button>
               </form>
             </div>
           </td>
         </tr>
-        <% }) %>
-        <% }else{ %>
-          <tr>
-            <td colspan="4"> No categories available</td>
-          </tr>
-          <% } %>
-    </tbody>
-  </table>
-</div>
+        <% }) %> <% }else{ %>
+        <tr>
+          <td colspan="4">No categories available</td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -81,23 +101,29 @@
     form.addEventListener("submit", (event) => {
       event.preventDefault();
 
-      const categoryInputName = document.getElementById("category-name").value.trim();
-      const categoryDescription = document.getElementById("category-description").value.trim();
+      const categoryInputName = document
+        .getElementById("category-name")
+        .value.trim();
+      const categoryDescription = document
+        .getElementById("category-description")
+        .value.trim();
       // const categoryImage = document.getElementById("category-image").files[0];
-      const subcategories = document.getElementById("subcategories").value.trim();
+      const subcategories = document
+        .getElementById("subcategories")
+        .value.trim();
       console.log(categoryInputName);
 
-      if (!categoryInputName || !categoryDescription ) {
+      if (!categoryInputName || !categoryDescription) {
         document.getElementById("errorMsg").style.display = "block";
         alert("Please fill out all required fields and upload an image.");
         return;
       }
 
       const categoryData = {
-        name : categoryInputName,
-        description : categoryDescription,
-        subcategories : subcategories.split(',')
-      }
+        name: categoryInputName,
+        description: categoryDescription,
+        subcategories: subcategories.split(","),
+      };
 
       // const formData = new FormData();
       // formData.append('name',categoryInputName);
@@ -105,12 +131,12 @@
       // // formData.append("image",categoryImage);
       // formData.append("subcategories",subcategories.split(','));
 
-
       console.log("axios startede");
-      axios.post("/api/admin/addNewCategory",categoryData)
-        .then((response)=> {
+      axios
+        .post("/api/admin/addNewCategory", categoryData)
+        .then((response) => {
           if (response.status === 200) {
-            console.log("response is : ",response.data.message);
+            console.log("response is : ", response.data.message);
             swal
               .fire({
                 icon: "success",
@@ -139,11 +165,11 @@
           }
         });
     });
-    function isValidCategoryName(name){
-        return /^[a-zA-Z0-9\s\-]{3,}$/.test(name)
+    function isValidCategoryName(name) {
+      return /^[a-zA-Z0-9\s\-]{3,}$/.test(name);
     }
   });
- 
+
   document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".delete-category-btn").forEach((button) => {
       button.addEventListener("click", function () {
@@ -152,24 +178,26 @@
         // console.log("CategoryId to delete: ", categoryId);
 
         // Show confirmation dialog
-        swal.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonText: "Yes, delete it!",
-          cancelButtonText: "No, cancel!"
-        }).then((result) => {
-          if (result.isConfirmed) {
-            // If confirmed, submit the form
-            deleteForm.submit();
-          }
-        });
+        swal
+          .fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+          })
+          .then((result) => {
+            if (result.isConfirmed) {
+              // If confirmed, submit the form
+              deleteForm.submit();
+            }
+          });
       });
     });
   });
 
-  function cancelForm(){
+  function cancelForm() {
     window.location.href = "/api/admin/categories";
   }
 </script>
