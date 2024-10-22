@@ -1,82 +1,155 @@
 const productModel = require("../models/ProductModeles");
+const categoryModel = require("../models/CategoryModels");
 
 const home = async (req, res) => {
-
-  const {userId , isLoggedIn} = req.session;
+  const { userId, isLoggedIn } = req.session;
+  const categories = await categoryModel.find();
   const products = await productModel.find();
 
-  res.render("home/home",{title:'home',isLoggedIn:req.session?.isLoggedIn,products});
+  res.render("home/home", {
+    title: "home",
+    isLoggedIn: req.session?.isLoggedIn,
+    products,
+    categories,
+  });
 };
-const logOut = (req,res) =>{
+const logOut = (req, res) => {
   req.session.destroy();
-  res.redirect("/home");  
-}
+  res.redirect("/home");
+};
 const forgotPasswordPage = (req, res) => {
   res.render("userSide/forgot-password-page");
 };
-const login = (req, res) => {
-  const {isLoggedIn,email,userId} = req.session;
-  res.render("userSide/sign-in",{title:'login',isLoggedIn:req.session?.isLoggedIn});
+const login = async (req, res) => {
+  const { isLoggedIn, email, userId } = req.session;
+  const categories = await categoryModel.find();
+
+  res.render("userSide/sign-in", {
+    title: "login",
+    isLoggedIn: req.session?.isLoggedIn,
+    categories,
+  });
 };
-const otpverification = (req, res) => {
-  const {isLoggedIn,email,userId} = req.session;
-  res.render("userSide/otpVerification",{isLoggedIn:req.session?.isLoggedIn});
+const otpverification = async (req, res) => {
+  const { isLoggedIn, email, userId } = req.session;
+  const categories = await categoryModel.find();
+
+  res.render("userSide/otpVerification", {
+    isLoggedIn: req.session?.isLoggedIn,
+    categories,
+  });
 };
 const resetPassword = (req, res) => {
-  res.render("userSide/reset-password",{isLoggedIn:req.session?.isLoggedIn});
+  res.render("userSide/reset-password", {
+    isLoggedIn: req.session?.isLoggedIn,
+  });
 };
 
-const category = (req, res) => {
-  const {isLoggedIn,email,userId} = req.session;
-  res.render("home/category",{isLoggedIn:req.session?.isLoggedIn});
+const category = async (req, res) => {
+  const { isLoggedIn, email, userId } = req.session;
+  const categories = await categoryModel.find();
+
+  res.render("home/category", {
+    isLoggedIn: req.session?.isLoggedIn,
+    categories,
+  });
 };
-const detail = (req, res) => {
-  const {isLoggedIn,email,userId} = req.session;
-  res.render("home/detail",{isLoggedIn:req.session?.isLoggedIn});
+const detail = async (req, res) => {
+  const { isLoggedIn, email, userId } = req.session;
+  res.render("home/detail", {
+    isLoggedIn: req.session?.isLoggedIn,
+    categories,
+  });
 };
-const shoppingCart = (req, res) => {
-  const {isLoggedIn,email,userId} = req.session;
-  res.render("home/shopping-cart",{isLoggedIn:req.session?.isLoggedIn});
+const shoppingCart = async (req, res) => {
+  const { isLoggedIn, email, userId } = req.session;
+  const categories = await categoryModel.find();
+
+  res.render("home/shopping-cart", {
+    isLoggedIn: req.session?.isLoggedIn,
+    categories,
+  });
 };
-const checkout = (req, res) => {
-  const {isLoggedIn,email,userId} = req.session;
-  res.render("home/checkout",{isLoggedIn:req.session?.isLoggedIn});
+const checkout = async (req, res) => {
+  const { isLoggedIn, email, userId } = req.session;
+  const categories = await categoryModel.find();
+
+  res.render("home/checkout", {
+    isLoggedIn: req.session?.isLoggedIn,
+    categories,
+  });
 };
-const blog = (req, res) => {
-  const {isLoggedIn,email,userId} = req.session;
-  res.render("home/blog",{isLoggedIn:req.session?.isLoggedIn});
+const blog = async (req, res) => {
+  const { isLoggedIn, email, userId } = req.session;
+  const categories = await categoryModel.find();
+
+  res.render("home/blog", { isLoggedIn: req.session?.isLoggedIn, categories });
 };
-const blogDetails = (req, res) => {
-  const {isLoggedIn,email,userId} = req.session;
-  res.render("home/blog-details",{isLoggedIn:req.session?.isLoggedIn});
+const blogDetails = async (req, res) => {
+  const { isLoggedIn, email, userId } = req.session;
+  const categories = await categoryModel.find();
+
+  res.render("home/blog-details", {
+    isLoggedIn: req.session?.isLoggedIn,
+    categories,
+  });
 };
-const contact = (req, res) => {
-  const {isLoggedIn,email,userId} = req.session;
-  res.render("home/contact",{isLoggedIn:req.session?.isLoggedIn});
+const contact = async (req, res) => {
+  const { isLoggedIn, email, userId } = req.session;
+  const categories = await categoryModel.find();
+
+  res.render("home/contact", {
+    isLoggedIn: req.session?.isLoggedIn,
+    categories,
+  });
 };
-const myWishlist = (req, res) => {
-  const {isLoggedIn,email,userId} = req.session;
-  res.render("home/my-wishlist",{isLoggedIn:req.session?.isLoggedIn});
+const myWishlist = async (req, res) => {
+  const { isLoggedIn, email, userId } = req.session;
+  const categories = await categoryModel.find();
+
+  res.render("home/my-wishlist", {
+    isLoggedIn: req.session?.isLoggedIn,
+    categories,
+  });
 };
-const termsConditions = (req, res) => {
-  const {isLoggedIn,email,userId} = req.session;
-  res.render("home/terms-conditions",{isLoggedIn:req.session?.isLoggedIn});
+const termsConditions = async (req, res) => {
+  const { isLoggedIn, email, userId } = req.session;
+  const categories = await categoryModel.find();
+
+  res.render("home/terms-conditions", {
+    isLoggedIn: req.session?.isLoggedIn,
+    categories,
+  });
 };
-const trakOrders = (req, res) => {
-  const {isLoggedIn,email,userId} = req.session;
-  res.render("home/track-orders",{isLoggedIn:req.session?.isLoggedIn});
+const trakOrders = async (req, res) => {
+  const { isLoggedIn, email, userId } = req.session;
+  const categories = await categoryModel.find();
+
+  res.render("home/track-orders", {
+    isLoggedIn: req.session?.isLoggedIn,
+    categories,
+  });
 };
-const faq = (req, res) => {
-  const {isLoggedIn,email,userId} = req.session;
-  res.render("home/faq",{isLoggedIn:req.session?.isLoggedIn});
+const faq = async (req, res) => {
+  const { isLoggedIn, email, userId } = req.session;
+  const categories = await categoryModel.find();
+
+  res.render("home/faq", { isLoggedIn: req.session?.isLoggedIn, categories });
 };
-const error = (req, res) => {
-  const {isLoggedIn,email,userId} = req.session;
-  res.render("home/404",{isLoggedIn:req.session?.isLoggedIn});
+const error = async (req, res) => {
+  const { isLoggedIn, email, userId } = req.session;
+  const categories = await categoryModel.find();
+
+  res.render("home/404", { isLoggedIn: req.session?.isLoggedIn, categories });
 };
-const myAccount = (req, res) => {
-  const {isLoggedIn,email,userId} = req.session;
-  res.render("home/myAccount",{isLoggedIn:req.session?.isLoggedIn});
+const myAccount = async (req, res) => {
+  const { isLoggedIn, email, userId } = req.session;
+  const categories = await categoryModel.find();
+
+  res.render("home/myAccount", {
+    isLoggedIn: req.session?.isLoggedIn,
+    categories,
+  });
 };
 
 module.exports = {
