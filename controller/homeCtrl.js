@@ -3,8 +3,8 @@ const categoryModel = require("../models/CategoryModels");
 
 const home = async (req, res) => {
   const { userId, isLoggedIn } = req.session;
-  const categories = await categoryModel.find();
-  const products = await productModel.find();
+  const categories = await categoryModel.find()
+  const products = await productModel.find().populate("category");
 
   res.render("home/home", {
     title: "home",
@@ -48,14 +48,24 @@ const resetPassword = (req, res) => {
 const category = async (req, res) => {
   const { isLoggedIn, email, userId } = req.session;
   const categories = await categoryModel.find();
+  const categoryId = req.params.id;
+  console.log(categoryId);
+  
+  // const categoryProducts = await productModel.find({category:categoryId});
+  const products = await productModel.find().populate("category")
+  console.log("categoryId is : ",categoryProducts);
+  
 
   res.render("home/category", {
     isLoggedIn: req.session?.isLoggedIn,
     categories,
+    products,
+    // categoryProducts,
   });
 };
 const detail = async (req, res) => {
   const { isLoggedIn, email, userId } = req.session;
+  const categories = await categoryModel.find();
   res.render("home/detail", {
     isLoggedIn: req.session?.isLoggedIn,
     categories,

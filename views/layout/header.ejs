@@ -108,7 +108,9 @@
                       <ul class="dropdown-menu" role="menu" >
                         <li class="menu-header">Computer</li>
                         <% categories.forEach((category,index)=>{ %>
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="/category">- <%= category.name %></a></li>
+                          <!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="/category/<%= category._id %>">- <%= category.name %></a></li> -->
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="/category/<%= category._id%>">- <%= category.name %></a></li>
+
                           <% }) %>
                           <!-- <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Electronics</a></li>
                           <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Shoes</a></li>

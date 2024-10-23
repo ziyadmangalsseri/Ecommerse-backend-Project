@@ -27,7 +27,7 @@ const {
 
 // Public Routes
 router.get("/home", home);
-router.get("/category", category);
+router.get("/category/:id", category);
 router.get("/detail", detail);
 router.get("/shopping-cart", shoppingCart);
 router.get("/checkout", checkout);
