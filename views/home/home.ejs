@@ -2433,28 +2433,24 @@
         <!-- <!==============Sort Product By Category ================== Start ========================!> -->
         <% if(categories && categories.length > 0){ %>
           
-          <% categories.forEach((productCategory, index) => { %>
+          <% categories.forEach((category,index)=>{ %>
             
-            <section class="section new-arrivals">
-              <h3 class="section-title"><%= productCategory.name %></h3>
+            <section class="section new-arriavls">
+              <h3 class="section-title"><%= category.name %></h3>
               <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
-        
-                <!-- Filter products for the current category -->
-                <% const categoryProducts = products.filter(product => String(product.category) === String(productCategory._id)); %>
-                
-                <!-- Check if the category has products -->
-                <% if(categoryProducts && categoryProducts.length > 0) { %>
-                   
-                  <% categoryProducts.forEach((product, index) => { %>
-                    <div class="item item-carousel">
+                  <% if(products  && products.length > 0){ %>
+                  <% products.forEach((product,index)=>{ %>
+                    <% if(product.category === category.name){ %>
+                  <div class="item item-carousel">
                       <div class="products">
                         <div class="product">
-                          <div class="product-image">
+                          <div class="product-image"> 
                             <div class="image"> 
                               <a href="detail.html">
-                                <img src="/images/products/<%= product.image %>" alt=""> 
-                                <img src="/images/products/<%= product.image %>" alt="" class="hover-image">
+                                <img src="/images/products/<%=product.image %>" alt=""> 
+                                <img src="/images/products/<%=product.image %>" alt="" class="hover-image">
                               </a>
+                              
                             </div>
                             <!-- /.image -->
                             
@@ -2466,58 +2462,41 @@
                             <h3 class="name"><a href="detail.html"><%= product.name %></a></h3>
                             <div class="rating rateit-small"></div>
                             <div class="description"></div>
-                            <div class="product-price"> 
-                              <span class="price"> ₹<%= product.price %> </span> 
-                              <span class="price-before-discount">₹<%= product.price * 2 %> </span> 
-                            </div>
+                            <div class="product-price"> <span class="price"> ₹"<%= product.price %>" </span> <span class="price-before-discount">₹<%= product.price*2 %> </span> </div>
                             <!-- /.product-price --> 
+                            
                           </div>
                           <!-- /.product-info -->
-                          
                           <div class="cart clearfix animate-effect">
-                            <div class="action">
-                              <ul class="list-unstyled">
-                                <li class="add-cart-button btn-group">
-                                  <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> 
-                                    <i class="fa fa-shopping-cart"></i> 
-                                  </button>
-                                  <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                                </li>
-                                <li class="lnk wishlist"> 
-                                  <a class="add-to-cart" href="detail.html" title="Wishlist"> 
-                                    <i class="icon fa fa-heart"></i> 
-                                  </a> 
-                                </li>
-                                <li class="lnk"> 
-                                  <a class="add-to-cart" href="detail.html" title="Compare"> 
-                                    <i class="fa fa-signal" aria-hidden="true"></i> 
-                                  </a> 
-                                </li>
-                              </ul>
-                            </div>
-                            <!-- /.action --> 
-                          </div>
-                          <!-- /.cart --> 
-                        </div>
-                        <!-- /.product --> 
-                      </div>
-                      <!-- /.products --> 
+                    <div class="action">
+                      <ul class="list-unstyled">
+                        <li class="add-cart-button btn-group">
+                          <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
+                          <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+                        </li>
+                        <li class="lnk wishlist"> <a class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                        <li class="lnk"> <a class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
+                      </ul>
                     </div>
-                    <!-- /.item --> 
-                  <% }) %>
-        
-                <% } else { %>
-                  <p>No products available for this category.</p>
-                <% } %>
-        
+                    <!-- /.action --> 
+                  </div>
+                  <!-- /.cart --> 
+                </div>
+                <!-- /.product --> 
+                
               </div>
-              <!-- /.home-owl-carousel --> 
-            </section>
-            <!-- /.section --> 
-        
-          <% }) %>
+              <!-- /.products --> 
+            </div>
+            <!-- /.item --> 
+            <% } %>
+            <% }) %>
+            <% } %>
+          </div>
+          <!-- /.home-owl-carousel --> 
+        </section>
+        <!-- /.section --> 
+      <% }) %>
         <% } %>
-        
         <!-- <!==============Sort Product By Category ================== End ========================!> -->
         
         
