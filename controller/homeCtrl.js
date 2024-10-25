@@ -48,21 +48,39 @@ const resetPassword = (req, res) => {
 const category = async (req, res) => {
   const { isLoggedIn, email, userId } = req.session;
   const categories = await categoryModel.find();
-  const categoryId = req.params.id;
-  console.log(categoryId);
+  // const categoryName = req.params.name;
+  // console.log(categoryName);
   
   // const categoryProducts = await productModel.find({category:categoryId});
-  const products = await productModel.find().populate("category")
-  console.log("categoryId is : ",categoryProducts);
+  const products = await productModel.find();
+  // console.log(products);
   
 
   res.render("home/category", {
     isLoggedIn: req.session?.isLoggedIn,
+    // categoryName,
     categories,
     products,
     // categoryProducts,
   });
 };
+
+const searchProduct = async (req,res)=>{
+  try{
+    const {query} = req.query;
+    const products = await productModel.find({
+      name:{$regex:query,$options:'i'}
+    }).populate(({
+      path:'category',
+      match:{name:{$regex:query,$options:'i'}}
+    }));
+    res.status(200).json({success:true,products});
+  }catch(err){
+    console.error(err.message);
+    res.status(500).json({success:false,message:'internal server error'});
+    
+  }
+}
 const detail = async (req, res) => {
   const { isLoggedIn, email, userId } = req.session;
   const categories = await categoryModel.find();
@@ -182,4 +200,5 @@ module.exports = {
   error,
   myAccount,
   logOut,
+  searchProduct,
 };

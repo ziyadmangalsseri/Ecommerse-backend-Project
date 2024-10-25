@@ -23,11 +23,12 @@ const {
   error,
   myAccount,
   logOut,
+  searchProduct,
 } = require("../controller/homeCtrl");
 
 // Public Routes
 router.get("/home", home);
-router.get("/category/:id", category);
+router.get("/category", category);
 router.get("/detail", detail);
 router.get("/shopping-cart", shoppingCart);
 router.get("/checkout", checkout);
@@ -40,6 +41,7 @@ router.get("/track-orders", trakOrders);
 router.get("/faq", faq);
 router.get("/404", error);
 router.get("/my-account", myAccount);
+router.get("/searchProduct",searchProduct);
 
 
 // Authentication Routes
