@@ -230,5 +230,114 @@
   }
 });
 
+
+document.querySelectorAll(".product-click").forEach(productLink => {
+  productLink.addEventListener("click", async (event) => {
+    event.preventDefault();
+
+    const productId = event.target.closest('.product-click').dataset.id;
+    console.log(productId);
+
+    try {
+      const response = await fetch(`/detail/${productId}`);
+      if (!response.ok) throw new Error('Product not found');
+
+      const product = await response.json();
+      if (product) {
+        document.querySelector(".product-detail-parent-div").style.display = "block";
+        const productDetailsContainer = document.getElementById("product-details");
+
+        productDetailsContainer.innerHTML = `
+         <div class="row product-row" style="padding: 20px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px;">
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 gallery-holder">
+        <div class="product-item-holder size-big single-product-gallery small-gallery">
+            <div id="owl-single-product">
+                <div class="single-product-gallery-item" id="slide1">
+                    <a data-lightbox="image-1" data-title="Gallery" href="assets/images/products/p1.jpg">
+                        <img class="img-responsive" alt="product" src="assets/images/blank.gif" data-echo="/images/products/${product.image}" style="width: 100%; border-radius: 5px;" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class='col-sm-12 col-md-8 col-lg-8 product-info-block'>
+        <div class="product-info" style="padding: 20px;">
+            <h1 class="name" style="font-size: 24px; font-weight: bold; color: #333;">${product.name}</h1>
+
+            <div class="rating-reviews m-t-20" style="margin-top: 20px;">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="pull-left">
+                            <div class="rating rateit-small" style="font-size: 18px; color: #ff9900;">★★★★☆</div>
+                        </div>
+                        <div class="pull-left" style="margin-left: 10px;">
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stock-container info-container m-t-10" style="margin-top: 10px;">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="pull-left">
+                            
+                        </div>
+                        <div class="pull-left" style="margin-left: 5px;">
+                           <div class="stock-box">
+                                <span class="value" style="color: #28a745;">${product.stock} In Stock</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="description-container m-t-20" style="margin-top: 20px; color: #666;">
+                <p>${product.description}</p>
+              </div>
+
+            <div class="price-container info-container m-t-30" style="margin-top: 30px;">
+                <div class="row">
+                    <div class="col-sm-6 col-xs-6">
+                        <div class="price-box">
+                            <span class="price" style="font-size: 24px; font-weight: bold; color: #333;">₹ ${product.price}</span>
+                            <span class="price-strike" style="font-size: 18px; color: #999; text-decoration: line-through;">₹ ${product.price*2}</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-6">
+                    </div>
+                </div>
+            </div>
+
+            <div class="quantity-container info-container" style="margin-top: 20px;">
+                <div class="row">
+                     <div class="qty" style="font-weight: bold; margin-right: 5px;">
+                        <span class="label">Qty ${product.stock}:</span>
+                    </div>
+                    <div class="qty-count" style="display: inline-block; margin-right: 20px;">
+                        <div class="cart-quantity">
+                            <div class="quant-input">
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        `;
+
+         // Scroll to the product details section (optional)
+         productDetailsContainer.scrollIntoView({behavior:"smooth"});
+      }
+    } catch (err) {
+      console.error(err.message);
+    }
+  });
+});
+
   </script>
   

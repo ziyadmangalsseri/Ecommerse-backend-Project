@@ -82,12 +82,19 @@ const searchProduct = async (req,res)=>{
   }
 }
 const detail = async (req, res) => {
-  const { isLoggedIn, email, userId } = req.session;
-  const categories = await categoryModel.find();
-  res.render("home/detail", {
-    isLoggedIn: req.session?.isLoggedIn,
-    categories,
-  });
+
+  try{
+
+    const product = await productModel.findById(req.params.id);
+    if(!product){
+      return res.status(404).json({error:'Product not found'});
+    }
+    res.json(product)
+   
+  }catch(err){
+    console.error(err.message);
+    res.status(500).json({error:'Server error'});
+  }
 };
 const shoppingCart = async (req, res) => {
   const { isLoggedIn, email, userId } = req.session;
